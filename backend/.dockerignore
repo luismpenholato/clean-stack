@@ -1,0 +1,39 @@
+# Build and IDE
+**/bin
+**/obj
+**/.vs
+**/.vscode
+**/*.user
+**/.toolstarget
+
+# Version control and env
+**/.git
+**/.gitignore
+**/.env
+**/.env.*
+
+# Docker and charts
+**/Dockerfile*
+**/.dockerignore
+**/docker-compose*
+**/azds.yaml
+**/charts
+
+# Project files (optional excludes)
+**/.classpath
+**/.project
+**/.settings
+**/*.dbmdl
+**/*.jfm
+
+# Dependencies and logs
+**/node_modules
+**/npm-debug.log
+
+# Secrets and config (replace in deployment)
+**/secrets.dev.yaml
+**/values.dev.yaml
+
+# Docs (keep image small)
+LICENSE
+README.md

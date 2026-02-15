@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="Boilerplate.Tests/Boilerplate.Tests.csproj" />
+  <Project Path="Boilerplate.Application/Boilerplate.Application.csproj" />
+  <Project Path="Boilerplate.CrossCutting.IOC/Boilerplate.CrossCutting.IOC.csproj" />
+  <Project Path="Boilerplate.CrossCutting/Boilerplate.CrossCutting.csproj" />
+  <Project Path="Boilerplate.Domain/Boilerplate.Domain.csproj" />
+  <Project Path="Boilerplate.Infrastructure/Boilerplate.Infrastructure.csproj" />
+  <Project Path="Boilerplate.Interface/Boilerplate.Interface.csproj" />
+  <Project Path="Boilerplate.Migration/Boilerplate.Migration.csproj" />
+</Solution>

@@ -1,0 +1,52 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--app-border-color);
+  gap: 16px;
+}
+
+.page-breadcrumb {
+  margin-top: 12px;
+}
+
+.page-breadcrumb ::ng-deep .ant-breadcrumb-link {
+  color: var(--app-text-secondary);
+}
+
+.page-breadcrumb ::ng-deep .ant-breadcrumb-link:hover {
+  color: var(--ant-primary-color);
+}
+
+.page-breadcrumb ::ng-deep .ant-breadcrumb-separator {
+  color: var(--app-text-secondary);
+}
+
+.page-breadcrumb ::ng-deep .ant-breadcrumb:last-child .ant-breadcrumb-link {
+  color: var(--app-text);
+}
+
+.page-header-text {
+  h2 {
+    margin: 0 0 4px 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--app-text, rgba(255, 255, 255, 0.9));
+  }
+  p {
+    margin: 0;
+    color: var(--app-text-secondary, rgba(255, 255, 255, 0.6));
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.page-header-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

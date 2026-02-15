@@ -1,0 +1,24 @@
+<div class="page-header">
+  <div class="page-header-text">
+    <h2>{{ title() }}</h2>
+    @if (subtitle()) {
+      <p>{{ subtitle() }}</p>
+    }
+    @if (breadcrumb().length > 0) {
+      <nz-breadcrumb class="page-breadcrumb" nzSeparator=">">
+        @for (item of breadcrumb(); track $index) {
+          @if (item.routerLink && $index < breadcrumb().length - 1) {
+            <nz-breadcrumb-item>
+              <a [routerLink]="item.routerLink">{{ item.label }}</a>
+            </nz-breadcrumb-item>
+          } @else {
+            <nz-breadcrumb-item>{{ item.label }}</nz-breadcrumb-item>
+          }
+        }
+      </nz-breadcrumb>
+    }
+  </div>
+  <div class="page-header-actions">
+    <ng-content select="[actions]"></ng-content>
+  </div>
+</div>

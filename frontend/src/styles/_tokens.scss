@@ -1,0 +1,63 @@
+:root {
+  --app-primary: #4f46e5;
+  --app-primary-hover: #6366f1;
+  --app-header-bg: #ffffff;
+  --app-header-height: 64px;
+  --app-content-bg: #ffffff;
+  --app-card-bg: #ffffff;
+  --app-border-color: rgba(15, 23, 42, 0.08);
+  --app-text: rgba(15, 23, 42, 0.92);
+  --app-text-secondary: rgba(15, 23, 42, 0.6);
+  --app-card-radius: 10px;
+  --app-card-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  --app-transition: 0.2s ease;
+  /* Inputs sem fundo sólido */
+  --app-input-bg: transparent;
+  --app-input-border: rgba(15, 23, 42, 0.12);
+  --app-input-focus-border: var(--app-primary);
+  /* Status suaves */
+  --app-status-success-bg: rgba(16, 185, 129, 0.12);
+  --app-status-success-text: #047857;
+  --app-status-error-bg: rgba(239, 68, 68, 0.1);
+  --app-status-error-text: #b91c1c;
+  /* Ícones de métricas (tons suaves) */
+  --app-metric-blue-bg: rgba(99, 102, 241, 0.1);
+  --app-metric-blue-text: #6366f1;
+  --app-metric-green-bg: rgba(16, 185, 129, 0.12);
+  --app-metric-green-text: #059669;
+  --app-metric-red-bg: rgba(239, 68, 68, 0.1);
+  --app-metric-red-text: #dc2626;
+  --app-metric-yellow-bg: rgba(245, 158, 11, 0.12);
+  --app-metric-yellow-text: #d97706;
+  --app-table-row-hover: rgba(15, 23, 42, 0.03);
+  --app-select-option-hover: rgba(15, 23, 42, 0.06);
+}
+
+body.theme-dark {
+  --app-primary: #818cf8;
+  --app-primary-hover: #a5b4fc;
+  --app-header-bg: #1e1b4b;
+  --app-content-bg: #0f172a;
+  --app-card-bg: #1e293b;
+  --app-border-color: rgba(255, 255, 255, 0.08);
+  --app-text: rgba(255, 255, 255, 0.9);
+  --app-text-secondary: rgba(255, 255, 255, 0.6);
+  --app-card-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  --app-input-bg: transparent;
+  --app-input-border: rgba(255, 255, 255, 0.08);
+  --app-input-focus-border: var(--app-primary);
+  --app-status-success-bg: rgba(52, 211, 153, 0.15);
+  --app-status-success-text: #6ee7b7;
+  --app-status-error-bg: rgba(248, 113, 113, 0.15);
+  --app-status-error-text: #fca5a5;
+  --app-metric-blue-bg: rgba(129, 140, 248, 0.15);
+  --app-metric-blue-text: #a5b4fc;
+  --app-metric-green-bg: rgba(52, 211, 153, 0.15);
+  --app-metric-green-text: #6ee7b7;
+  --app-metric-red-bg: rgba(248, 113, 113, 0.15);
+  --app-metric-red-text: #fca5a5;
+  --app-metric-yellow-bg: rgba(252, 211, 77, 0.15);
+  --app-metric-yellow-text: #fcd34d;
+  --app-table-row-hover: rgba(255, 255, 255, 0.04);
+  --app-select-option-hover: rgba(255, 255, 255, 0.08);
+}

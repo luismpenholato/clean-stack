@@ -1,0 +1,46 @@
+.page-content.form-content {
+  max-width: 640px;
+  margin-top: 8px;
+}
+
+.form-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 240px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  nz-form-item {
+    margin-bottom: 0;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+
+  &__item {
+    min-width: 0;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--app-border-color);
+}

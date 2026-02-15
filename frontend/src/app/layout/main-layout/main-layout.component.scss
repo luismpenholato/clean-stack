@@ -1,0 +1,112 @@
+.app-layout {
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: var(--app-header-height);
+  padding: 0 24px;
+  background: var(--app-header-bg);
+  border-bottom: 1px solid var(--app-border-color);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menu-trigger {
+  color: var(--app-text);
+  padding: 8px;
+
+  .hamburger {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    box-shadow: 0 6px 0 currentColor, 0 -6px 0 currentColor;
+  }
+}
+
+.app-title {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--app-text);
+  text-decoration: none;
+  &:hover {
+    color: var(--app-text);
+  }
+}
+
+.app-header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--app-border-color);
+  background: var(--app-header-bg);
+  color: var(--app-text);
+  cursor: pointer;
+  transition: var(--app-transition);
+  padding: 0;
+
+  &:hover {
+    background: var(--app-hover-bg, rgba(0, 0, 0, 0.04));
+  }
+
+  &.is-dark:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.theme-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.app-content {
+  padding: 24px 24px 40px;
+  min-height: calc(100vh - var(--app-header-height));
+  background: var(--app-content-bg);
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.drawer-menu {
+  border: none;
+}
+
+.drawer-section-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--app-text-secondary);
+  margin: 4px 0 12px 8px;
+}
+
+::ng-deep .drawer-menu .ant-menu-item-selected {
+  background: var(--ant-primary-color) !important;
+  color: #fff !important;
+}
+
+::ng-deep .drawer-menu .ant-menu-item {
+  border-radius: 8px;
+  margin: 4px 8px;
+}
+
+::ng-deep .drawer-menu .ant-menu-item:hover {
+  background: rgba(129, 140, 248, 0.12);
+}

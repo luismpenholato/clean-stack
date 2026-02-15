@@ -1,0 +1,332 @@
+/* ==========================================
+   Cards
+   ========================================== */
+.ant-card {
+  background: var(--app-card-bg) !important;
+  border-color: var(--app-border-color) !important;
+  color: var(--app-text);
+}
+
+.ant-card-head {
+  color: var(--app-text);
+  border-color: var(--app-border-color);
+}
+
+/* ==========================================
+   Table
+   ========================================== */
+.ant-table {
+  background: var(--app-card-bg) !important;
+  color: var(--app-text);
+}
+
+.ant-table-thead > tr > th {
+  background: rgba(15, 23, 42, 0.06) !important;
+  color: var(--app-text);
+  border-color: var(--app-border-color);
+}
+
+body.theme-dark .ant-table-thead > tr > th {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-color: var(--app-border-color);
+  color: var(--app-text);
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: var(--app-table-row-hover) !important;
+}
+
+/* ==========================================
+   Modal
+   ========================================== */
+.ant-modal-content {
+  background: var(--app-card-bg);
+  border: 1px solid var(--app-border-color);
+}
+
+.ant-modal-header {
+  background: transparent;
+  border-color: var(--app-border-color);
+  color: var(--app-text);
+}
+
+.ant-modal-title {
+  color: var(--app-text);
+}
+
+.ant-modal-body {
+  color: var(--app-text);
+}
+
+.ant-modal-close-x {
+  color: var(--app-text-secondary);
+}
+
+/* ==========================================
+   Drawer
+   ========================================== */
+.ant-drawer-content {
+  background: var(--app-header-bg);
+}
+
+.ant-drawer-header {
+  background: var(--app-header-bg);
+  border-color: var(--app-border-color);
+  color: var(--app-text);
+}
+
+.ant-drawer-close,
+.ant-drawer-close:hover,
+.ant-drawer-close-x {
+  color: var(--app-text);
+}
+
+.ant-drawer-close .anticon,
+.ant-drawer-close .anticon svg {
+  color: var(--app-text);
+  fill: var(--app-text);
+}
+
+.ant-drawer-title {
+  color: var(--app-text);
+}
+
+.ant-drawer-body {
+  background: var(--app-header-bg);
+  color: var(--app-text);
+}
+
+/* ==========================================
+   Empty
+   ========================================== */
+.ant-empty-description {
+  color: var(--app-text-secondary);
+}
+
+/* ==========================================
+   Forms: labels, checkboxes, breadcrumb
+   ========================================== */
+.ant-form-item-label > label {
+  color: var(--app-text) !important;
+}
+
+.ant-checkbox-wrapper,
+.ant-checkbox-wrapper span {
+  color: var(--app-text) !important;
+}
+
+.ant-breadcrumb,
+.ant-breadcrumb a,
+.ant-breadcrumb .ant-breadcrumb-link,
+.ant-breadcrumb .ant-breadcrumb-separator {
+  color: var(--app-text-secondary) !important;
+}
+
+.ant-breadcrumb a:hover {
+  color: var(--app-primary) !important;
+}
+
+.ant-divider-inner-text {
+  color: var(--app-text-secondary) !important;
+}
+
+/* ==========================================
+   Inputs: fundo transparente, borda suave
+   ========================================== */
+
+/* Estado padrão (todos os temas) */
+.ant-input,
+.ant-input-number-input {
+  background: var(--app-input-bg) !important;
+  color: var(--app-text) !important;
+}
+
+.ant-select-selector {
+  background: var(--app-input-bg) !important;
+  border-color: var(--app-input-border) !important;
+  color: var(--app-text) !important;
+}
+
+.ant-input-affix-wrapper {
+  background: var(--app-input-bg) !important;
+  border-color: var(--app-input-border) !important;
+  color: var(--app-text);
+}
+
+.ant-input-affix-wrapper > .ant-input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.ant-input-number {
+  background: var(--app-input-bg) !important;
+  border-color: var(--app-input-border) !important;
+  color: var(--app-text) !important;
+}
+
+.ant-input-number-handler-wrap {
+  background: var(--app-card-bg) !important;
+  border-color: var(--app-input-border) !important;
+}
+
+.ant-input-number-handler {
+  color: var(--app-text-secondary) !important;
+  border-color: var(--app-input-border) !important;
+}
+
+textarea.ant-input {
+  background: var(--app-input-bg) !important;
+  color: var(--app-text) !important;
+}
+
+.ant-input::placeholder,
+.ant-input-number-input::placeholder,
+textarea.ant-input::placeholder {
+  color: var(--app-text-secondary) !important;
+}
+
+.ant-select-selection-placeholder {
+  color: var(--app-text-secondary) !important;
+}
+
+/* Foco: apenas borda primária, sem box-shadow */
+.ant-input:focus,
+.ant-input:focus-visible,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper:focus-within,
+.ant-input-affix-wrapper-focused,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector,
+.ant-select-open .ant-select-selector,
+textarea.ant-input:focus {
+  border-color: var(--app-input-focus-border) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ==========================================
+   Dark theme: reforço completo
+   ========================================== */
+body.theme-dark {
+  /* Inputs default: sem contorno visível */
+  .ant-input,
+  .ant-input-number,
+  .ant-input-number-input,
+  .ant-select-selector,
+  .ant-input-affix-wrapper,
+  textarea.ant-input {
+    background: var(--app-input-bg) !important;
+    border-color: var(--app-input-border) !important;
+    box-shadow: none !important;
+    outline: none !important;
+    color: var(--app-text) !important;
+  }
+
+  .ant-input-affix-wrapper > .ant-input {
+    border: none !important;
+  }
+
+  /* Hover: sem alterar borda */
+  .ant-input:hover,
+  .ant-input-number:hover,
+  .ant-input-affix-wrapper:hover,
+  .ant-select:not(.ant-select-focused):hover .ant-select-selector,
+  textarea.ant-input:hover {
+    border-color: var(--app-input-border) !important;
+    box-shadow: none !important;
+  }
+
+  /* Foco: apenas borda primária */
+  .ant-input:focus,
+  .ant-input:focus-visible,
+  .ant-input-focused,
+  .ant-input-affix-wrapper:focus,
+  .ant-input-affix-wrapper:focus-within,
+  .ant-input-affix-wrapper-focused,
+  .ant-input-number-focused,
+  .ant-select-focused .ant-select-selector,
+  .ant-select-open .ant-select-selector,
+  textarea.ant-input:focus {
+    border-color: var(--app-input-focus-border) !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* Input number handlers */
+  .ant-input-number-handler-wrap {
+    background: var(--app-card-bg) !important;
+    border-color: var(--app-input-border) !important;
+  }
+
+  .ant-input-number-handler {
+    color: var(--app-text-secondary) !important;
+    border-color: var(--app-input-border) !important;
+  }
+
+  /* Popconfirm */
+  .ant-popover-inner {
+    background: var(--app-card-bg) !important;
+    color: var(--app-text) !important;
+  }
+
+  .ant-popover-message-title,
+  .ant-popconfirm-message-title {
+    color: var(--app-text) !important;
+  }
+
+  .ant-popover-arrow-content,
+  .ant-popover-arrow::after {
+    background: var(--app-card-bg) !important;
+  }
+
+  /* Buttons default/text */
+  .ant-btn-default {
+    background: transparent !important;
+    border-color: var(--app-input-border) !important;
+    color: var(--app-text) !important;
+  }
+
+  .ant-btn-default:hover {
+    border-color: var(--app-primary) !important;
+    color: var(--app-primary) !important;
+  }
+}
+
+/* ==========================================
+   Dropdown do select: sem fundo azul
+   ========================================== */
+.ant-select-item-option-active,
+.ant-select-item-option-selected {
+  background: var(--app-select-option-hover) !important;
+  color: var(--app-text) !important;
+}
+
+.ant-select-dropdown {
+  background: var(--app-card-bg) !important;
+  border: 1px solid var(--app-border-color);
+}
+
+.ant-select-item-option {
+  color: var(--app-text);
+}
+
+/* ==========================================
+   Tags de status suaves
+   ========================================== */
+.ant-tag.ant-tag-success {
+  background: var(--app-status-success-bg) !important;
+  color: var(--app-status-success-text) !important;
+  border: none;
+}
+
+.ant-tag.ant-tag-error {
+  background: var(--app-status-error-bg) !important;
+  color: var(--app-status-error-text) !important;
+  border: none;
+}

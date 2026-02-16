@@ -34,8 +34,10 @@ public sealed class CreateProductHandler : IRequestHandler<CreateProductCommand,
         if (request.ImportFromExternalId.HasValue)
         {
             var external = await _externalProductService.GetProductByIdAsync(request.ImportFromExternalId.Value, cancellationToken);
+
             if (external is null)
                 throw new InvalidOperationException($"Produto externo com id {request.ImportFromExternalId} não encontrado.");
+
             name = external.Title ?? "Sem título";
             description = external.Description;
             price = external.Price;
@@ -43,8 +45,10 @@ public sealed class CreateProductHandler : IRequestHandler<CreateProductCommand,
         else
         {
             name = (request.Name ?? string.Empty).Trim();
+
             if (string.IsNullOrWhiteSpace(name))
                 throw new InvalidOperationException("Nome é obrigatório quando não está importando da API externa.");
+
             description = string.IsNullOrWhiteSpace(request.Description) ? null : request.Description.Trim();
             price = request.Price ?? 0;
         }

@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
@@ -9,7 +9,7 @@ import pt from '@angular/common/locales/pt';
 import { routes } from './app.routes';
 import { httpErrorInterceptor } from './shared/interceptors/http-error.interceptor';
 
-registerLocaleData(pt);
+registerLocaleData(pt, 'pt-BR');
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([httpErrorInterceptor])),
     provideAnimations(),
-    provideNzI18n(pt_BR)
+    provideNzI18n(pt_BR),
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 };

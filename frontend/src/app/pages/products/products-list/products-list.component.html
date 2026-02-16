@@ -142,7 +142,13 @@
             <span class="price-value">{{ item.price | currency:'BRL':'symbol':'1.2-2' }}</span>
           </td>
           <td class="col-description">
-            <span class="description-text">{{ (item.description | truncate:50) || '—' }}</span>
+            <span
+              class="description-text"
+              nz-tooltip
+              [nzTooltipTitle]="item.description || 'Sem descrição'"
+            >
+              {{ (item.description | truncate:50) || '—' }}
+            </span>
           </td>
           <td class="col-status">
             @if (item.isActive) {

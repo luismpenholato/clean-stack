@@ -22,10 +22,7 @@ public sealed class UpdateProductHandler : IRequestHandler<UpdateProductCommand,
 
         var product = await _uow.ProductRepository.GetByIdTrackingAsync(request.Id, cancellationToken);
 
-        if (product is null)
-        {
-            return null;
-        }
+        if (product is null) return null;
 
         product.Name = request.Name.Trim();
         product.Description = string.IsNullOrWhiteSpace(request.Description) ? null : request.Description.Trim();

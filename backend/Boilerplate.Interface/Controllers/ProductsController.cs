@@ -1,10 +1,10 @@
 using Boilerplate.Application.Features.Products.Commands.CreateProduct;
 using Boilerplate.Application.Features.Products.Commands.DeleteProduct;
 using Boilerplate.Application.Features.Products.Commands.UpdateProduct;
-using Boilerplate.CrossCutting.Dto.Products;
-using Boilerplate.Domain.Interfaces.Services;
 using Boilerplate.Application.Features.Products.Queries.GetProductById;
+using Boilerplate.Application.Features.Products.Queries.ListExternalProducts;
 using Boilerplate.Application.Features.Products.Queries.ListProducts;
+using Boilerplate.CrossCutting.Dto.Products;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,12 +15,10 @@ namespace Boilerplate.Interface.Controllers;
 public sealed class ProductsController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly IExternalProductService _externalProductService;
 
-    public ProductsController(IMediator mediator, IExternalProductService externalProductService)
+    public ProductsController(IMediator mediator)
     {
         _mediator = mediator;
-        _externalProductService = externalProductService;
     }
 
     [HttpGet]
@@ -33,7 +31,7 @@ public sealed class ProductsController : ControllerBase
     [HttpGet("external")]
     public async Task<ActionResult<IReadOnlyList<ExternalProductDto>>> ListExternal(CancellationToken cancellationToken)
     {
-        var result = await _externalProductService.GetProductsAsync(cancellationToken);
+        var result = await _mediator.Send(new ListExternalProductsQuery(), cancellationToken);
         return Ok(result);
     }
 

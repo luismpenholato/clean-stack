@@ -7,11 +7,11 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { catchError, finalize, of, timeout } from 'rxjs';
+import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { AutofocusDirective } from '../../../shared/directives/autofocus/autofocus.directive';
 import { ProductService } from '../product.service';
@@ -31,7 +31,7 @@ import { ExternalProduct } from '../product.model';
     NzDividerModule,
     NzFormModule,
     NzInputModule,
-    NzInputNumberModule,
+    NgxCurrencyDirective,
     NzSelectModule,
     NzSpinModule
   ],
@@ -56,6 +56,15 @@ export class ProductFormComponent implements OnInit {
   externalProducts: ExternalProduct[] = [];
   loadingExternal = false;
   selectedExternalId: number | null = null;
+
+  readonly currencyOptions = {
+    prefix: 'R$ ',
+    thousands: '.',
+    decimal: ',',
+    precision: 2,
+    allowNegative: false,
+    inputMode: NgxCurrencyInputMode.Financial
+  };
 
   form = this.fb.nonNullable.group({
     id: [0],
@@ -127,6 +136,16 @@ export class ProductFormComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/produtos']);
+  }
+
+  movePriceCursorToEnd(event: FocusEvent | MouseEvent): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.setSelectionRange) {
+      setTimeout(() => {
+        const len = input.value?.length ?? 0;
+        input.setSelectionRange(len, len);
+      }, 0);
+    }
   }
 
   onSave(): void {

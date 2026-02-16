@@ -2,7 +2,7 @@ using Boilerplate.Domain.Interfaces.Entities;
 
 namespace Boilerplate.Domain.Entities;
 
-public sealed class Product : IEntity
+public sealed class Product : IEntity<long>
 {
     public long Id { get; set; }
     public required string Name { get; set; }

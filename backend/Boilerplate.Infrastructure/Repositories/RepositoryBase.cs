@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Boilerplate.Infrastructure.Repositories;
 
-public abstract class RepositoryBase<T> : ICrudRepository<T> where T : class, IEntity
+public abstract class RepositoryBase<T, TKey> : ICrudRepository<T, TKey>
+    where T : class, IEntity<TKey>
+    where TKey : IEquatable<TKey>
 {
     private readonly AppDbContext _context;
 
@@ -17,14 +19,14 @@ public abstract class RepositoryBase<T> : ICrudRepository<T> where T : class, IE
 
     protected DbSet<T> Set { get; }
 
-    public virtual async Task<T?> GetByIdAsync(long id, CancellationToken cancellationToken)
+    public virtual async Task<T?> GetByIdAsync(TKey id, CancellationToken cancellationToken)
     {
-        return await Set.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+        return await Set.AsNoTracking().FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken);
     }
 
-    public virtual async Task<T?> GetByIdTrackingAsync(long id, CancellationToken cancellationToken)
+    public virtual async Task<T?> GetByIdTrackingAsync(TKey id, CancellationToken cancellationToken)
     {
-        return await Set.FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+        return await Set.FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken);
     }
 
     public virtual async Task<IReadOnlyList<T>> ListAsync(CancellationToken cancellationToken)
@@ -56,9 +58,9 @@ public abstract class RepositoryBase<T> : ICrudRepository<T> where T : class, IE
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public virtual async Task<bool> DeleteAsync(long id, CancellationToken cancellationToken)
+    public virtual async Task<bool> DeleteAsync(TKey id, CancellationToken cancellationToken)
     {
-        var entity = await Set.FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+        var entity = await Set.FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken);
 
         if (entity is null)
         {
@@ -70,9 +72,10 @@ public abstract class RepositoryBase<T> : ICrudRepository<T> where T : class, IE
         return true;
     }
 
-    public virtual async Task DeleteRangeAsync(IEnumerable<long> ids, CancellationToken cancellationToken)
+    public virtual async Task DeleteRangeAsync(IEnumerable<TKey> ids, CancellationToken cancellationToken)
     {
-        var entities = await Set.Where(e => ids.Contains(e.Id)).ToListAsync(cancellationToken);
+        var idList = ids.ToList();
+        var entities = await Set.Where(e => idList.Contains(e.Id)).ToListAsync(cancellationToken);
 
         if (entities.Count == 0)
         {

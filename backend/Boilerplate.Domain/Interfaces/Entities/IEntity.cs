@@ -1,6 +1,6 @@
 namespace Boilerplate.Domain.Interfaces.Entities;
 
-public interface IEntity
+public interface IEntity<TKey>
 {
-    long Id { get; set; }
+    TKey Id { get; set; }
 }

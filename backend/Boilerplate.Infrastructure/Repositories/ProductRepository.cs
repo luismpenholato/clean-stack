@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Boilerplate.Infrastructure.Repositories;
 
-public sealed class ProductRepository : RepositoryBase<Product>, IProductRepository
+public sealed class ProductRepository : RepositoryBase<Product, long>, IProductRepository
 {
     public ProductRepository(AppDbContext context) : base(context)
     {

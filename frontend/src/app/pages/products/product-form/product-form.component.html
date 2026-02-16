@@ -69,14 +69,17 @@
         <nz-form-item class="form-row__item flex-1">
           <nz-form-label [nzRequired]="!importFromExternal || isEdit">Preço (R$)</nz-form-label>
           <nz-form-control nzErrorTip="Informe um preço válido">
-            <nz-input-number
+            <input
+              nz-input
+              type="text"
+              inputmode="decimal"
+              placeholder="0,00"
+              currencyMask
+              [currencyMask]="currencyOptions"
               formControlName="price"
-              [nzMin]="0"
-              [nzStep]="1"
-              [nzPrecision]="2"
-              nzPlaceHolder="0,00"
-              style="width: 100%"
-            ></nz-input-number>
+              (focus)="movePriceCursorToEnd($event)"
+              (click)="movePriceCursorToEnd($event)"
+            />
           </nz-form-control>
         </nz-form-item>
       </div>

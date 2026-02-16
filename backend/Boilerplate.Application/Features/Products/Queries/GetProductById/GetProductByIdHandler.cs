@@ -17,10 +17,7 @@ public sealed class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery,
     {
         var product = await _uow.ProductRepository.GetByIdAsync(request.Id, cancellationToken);
 
-        if (product is null)
-        {
-            return null;
-        }
+        if (product is null) return null;
 
         return new ProductDto
         {

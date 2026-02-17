@@ -1,12 +1,12 @@
 <nz-layout class="app-layout">
   <nz-header class="app-header">
-    <button nz-button nzType="text" class="menu-trigger" (click)="drawerVisible = true" aria-label="Abrir menu">
+    <button nz-button nzType="text" class="menu-trigger" (click)="layout.setDrawerVisible(true)" aria-label="Abrir menu">
       <span class="hamburger"></span>
     </button>
     <a routerLink="/" class="app-title">Boilerplate</a>
     <div class="app-header-actions">
-      <button class="theme-toggle" [class.is-dark]="isDark" (click)="toggleTheme()" aria-label="Alternar tema">
-        @if (isDark) {
+      <button class="theme-toggle" [class.is-dark]="layout.isDark()" (click)="layout.toggleTheme()" aria-label="Alternar tema">
+        @if (layout.isDark()) {
           <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"/>
             <line x1="12" y1="1" x2="12" y2="3"/>
@@ -35,15 +35,15 @@
 </nz-layout>
 
 <nz-drawer
-  [nzVisible]="drawerVisible"
+  [nzVisible]="layout.drawerVisible()"
   nzPlacement="left"
   nzTitle="Menu"
   [nzWidth]="280"
-  (nzOnClose)="drawerVisible = false"
+  (nzOnClose)="layout.setDrawerVisible(false)"
 >
   <div class="drawer-section-title">Navegação</div>
   <ul nz-menu nzMode="vertical" class="drawer-menu">
-    <li nz-menu-item routerLink="/produtos" routerLinkActive="ant-menu-item-selected" (click)="drawerVisible = false">
+    <li nz-menu-item routerLink="/produtos" routerLinkActive="ant-menu-item-selected" (click)="layout.setDrawerVisible(false)">
       Produtos
     </li>
   </ul>

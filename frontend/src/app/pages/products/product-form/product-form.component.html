@@ -1,4 +1,4 @@
-@if (isEdit) {
+@if (isEdit()) {
   <app-page-header
     title="Editar produto"
     [breadcrumb]="[{ label: 'Início', routerLink: '/' }, { label: 'Produtos', routerLink: '/produtos' }, { label: 'Editar' }]"
@@ -11,36 +11,42 @@
 }
 
 <section class="page-content form-content">
-  @if (loading) {
+  @if (loading()) {
     <div class="form-loading">
       <nz-spin nzSimple [nzSpinning]="true"></nz-spin>
     </div>
   } @else {
-    <form nz-form [formGroup]="form" nzLayout="vertical" class="product-form">
+    <form nz-form [formGroup]="form" nzLayout="vertical" class="product-form" (ngSubmit)="onSave()">
 
-      @if (!isEdit) {
+      @if (!isEdit()) {
         <nz-form-item>
           <nz-form-control>
-            <label nz-checkbox [(ngModel)]="importFromExternal" [ngModelOptions]="{standalone: true}" (ngModelChange)="onImportFromExternalChange($event)">
+            <label
+              nz-checkbox
+              [ngModel]="importFromExternal()"
+              [ngModelOptions]="{standalone: true}"
+              (ngModelChange)="onImportFromExternalChange($event)"
+            >
               Importar da API externa (Fake Store)
             </label>
           </nz-form-control>
         </nz-form-item>
 
-        @if (importFromExternal) {
+        @if (importFromExternal()) {
           <nz-form-item>
             <nz-form-label nzRequired>Produto da API externa</nz-form-label>
             <nz-form-control nzErrorTip="Selecione um produto">
               <nz-select
-                [(ngModel)]="selectedExternalId"
+                [ngModel]="selectedExternalId()"
                 [ngModelOptions]="{standalone: true}"
+                (ngModelChange)="selectedExternalId.set($event)"
                 nzPlaceHolder="Selecione um produto..."
-                [nzLoading]="loadingExternal"
+                [nzLoading]="loadingExternal()"
                 nzShowSearch
                 nzAllowClear
                 nzSize="large"
               >
-                @for (ext of externalProducts; track ext.id) {
+                @for (ext of externalProducts(); track ext.id) {
                   <nz-option [nzValue]="ext.id" [nzLabel]="ext.title + ' — ' + (ext.price | currency:'BRL')"></nz-option>
                 }
               </nz-select>
@@ -48,37 +54,34 @@
           </nz-form-item>
         }
 
-        @if (importFromExternal) {
+        @if (importFromExternal()) {
           <nz-divider nzText="Opções adicionais" nzOrientation="left"></nz-divider>
         }
       }
 
       <div class="form-row">
         <nz-form-item class="form-row__item flex-2">
-          <nz-form-label [nzRequired]="!importFromExternal || isEdit">Nome</nz-form-label>
+          <nz-form-label [nzRequired]="!importFromExternal() || isEdit()">Nome</nz-form-label>
           <nz-form-control nzErrorTip="Informe o nome do produto">
             <input
               nz-input
               formControlName="name"
               placeholder="Nome do produto"
-              [appAutofocus]="!loading"
+              [appAutofocus]="!loading()"
             />
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item class="form-row__item flex-1">
-          <nz-form-label [nzRequired]="!importFromExternal || isEdit">Preço (R$)</nz-form-label>
+          <nz-form-label [nzRequired]="!importFromExternal() || isEdit()">Preço (R$)</nz-form-label>
           <nz-form-control nzErrorTip="Informe um preço válido">
             <input
               nz-input
               type="text"
-              inputmode="decimal"
               placeholder="0,00"
-              currencyMask
-              [currencyMask]="currencyOptions"
+              appCurrencyMask
+              [appCurrencyMask]="currencyOptions"
               formControlName="price"
-              (focus)="movePriceCursorToEnd($event)"
-              (click)="movePriceCursorToEnd($event)"
             />
           </nz-form-control>
         </nz-form-item>
@@ -103,8 +106,8 @@
       </nz-form-item>
 
       <div class="form-actions">
-        <button nz-button nzType="default" (click)="cancel()">Cancelar</button>
-        <button nz-button nzType="primary" [nzLoading]="submitting" (click)="onSave()">Salvar</button>
+        <button type="button" nz-button nzType="default" (click)="cancel()">Cancelar</button>
+        <button type="submit" nz-button nzType="primary" [nzLoading]="submitting()">Salvar</button>
       </div>
     </form>
   }

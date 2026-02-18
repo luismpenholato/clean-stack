@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -10,22 +14,6 @@
 
 .page-breadcrumb {
   margin-top: 12px;
-}
-
-.page-breadcrumb ::ng-deep .ant-breadcrumb-link {
-  color: var(--app-text-secondary);
-}
-
-.page-breadcrumb ::ng-deep .ant-breadcrumb-link:hover {
-  color: var(--ant-primary-color);
-}
-
-.page-breadcrumb ::ng-deep .ant-breadcrumb-separator {
-  color: var(--app-text-secondary);
-}
-
-.page-breadcrumb ::ng-deep .ant-breadcrumb:last-child .ant-breadcrumb-link {
-  color: var(--app-text);
 }
 
 .page-header-text {

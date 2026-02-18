@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -11,15 +11,20 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { catchError, finalize, of, timeout } from 'rxjs';
-import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { AutofocusDirective } from '../../../shared/directives/autofocus/autofocus.directive';
+import { CurrencyMaskDirective } from '../../../shared/directives/currency-mask/currency-mask.directive';
 import { ProductService } from '../product.service';
 import { ExternalProduct } from '../product.model';
+import {
+  buildProductSaveRequest$,
+  validateProductForm
+} from './product-form.helper';
 
 @Component({
   selector: 'app-product-form',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'app-product-form' },
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +36,7 @@ import { ExternalProduct } from '../product.model';
     NzDividerModule,
     NzFormModule,
     NzInputModule,
-    NgxCurrencyDirective,
+    CurrencyMaskDirective,
     NzSelectModule,
     NzSpinModule
   ],
@@ -44,26 +49,23 @@ export class ProductFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-  private readonly cdr = inject(ChangeDetectorRef);
   private readonly requestTimeoutMs = 10_000;
 
-  isEdit = false;
-  productId: number | null = null;
-  loading = false;
-  submitting = false;
-
-  importFromExternal = false;
-  externalProducts: ExternalProduct[] = [];
-  loadingExternal = false;
-  selectedExternalId: number | null = null;
+  readonly isEdit = signal(false);
+  readonly productId = signal<number | null>(null);
+  readonly loading = signal(false);
+  readonly submitting = signal(false);
+  readonly importFromExternal = signal(false);
+  readonly externalProducts = signal<ExternalProduct[]>([]);
+  readonly loadingExternal = signal(false);
+  readonly selectedExternalId = signal<number | null>(null);
 
   readonly currencyOptions = {
     prefix: 'R$ ',
     thousands: '.',
     decimal: ',',
     precision: 2,
-    allowNegative: false,
-    inputMode: NgxCurrencyInputMode.Financial
+    allowNegative: false
   };
 
   form = this.fb.nonNullable.group({
@@ -77,24 +79,22 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.isEdit = true;
-      this.productId = +id;
+      this.isEdit.set(true);
+      this.productId.set(+id);
       this.loadProduct();
     } else {
-      this.isEdit = false;
+      this.isEdit.set(false);
     }
   }
 
   private loadProduct(): void {
-    if (!this.productId) return;
-    this.loading = true;
-    this.productService.getById(this.productId).pipe(
+    const id = this.productId();
+    if (id == null) return;
+    this.loading.set(true);
+    this.productService.getById(id).pipe(
       timeout(this.requestTimeoutMs),
       catchError(() => of(null)),
-      finalize(() => {
-        this.loading = false;
-        this.cdr.markForCheck();
-      })
+      finalize(() => this.loading.set(false))
     ).subscribe((product) => {
       if (product) {
         this.form.reset({
@@ -112,132 +112,56 @@ export class ProductFormComponent implements OnInit {
   }
 
   onImportFromExternalChange(checked: boolean): void {
-    this.importFromExternal = checked;
-    this.selectedExternalId = null;
+    this.importFromExternal.set(checked);
+    this.selectedExternalId.set(null);
     this.updateFormFieldsState();
-    if (checked && this.externalProducts.length === 0) {
+    if (checked && this.externalProducts().length === 0) {
       this.loadExternalProducts();
     }
   }
 
   loadExternalProducts(): void {
-    this.loadingExternal = true;
+    this.loadingExternal.set(true);
     this.productService.listExternal().pipe(
       timeout(this.requestTimeoutMs),
       catchError(() => of([] as ExternalProduct[])),
-      finalize(() => {
-        this.loadingExternal = false;
-        this.cdr.markForCheck();
-      })
-    ).subscribe((list) => {
-      this.externalProducts = list;
-    });
+      finalize(() => this.loadingExternal.set(false))
+    ).subscribe((list) => this.externalProducts.set(list));
   }
 
   cancel(): void {
     this.router.navigate(['/produtos']);
   }
 
-  movePriceCursorToEnd(event: FocusEvent | MouseEvent): void {
-    const input = event.target as HTMLInputElement;
-    if (input?.setSelectionRange) {
-      setTimeout(() => {
-        const len = input.value?.length ?? 0;
-        input.setSelectionRange(len, len);
-      }, 0);
-    }
-  }
-
   onSave(): void {
-    if (!this.validateBeforeSubmit()) {
+    const options = {
+      isEdit: this.isEdit(),
+      importFromExternal: this.importFromExternal(),
+      selectedExternalId: this.selectedExternalId()
+    };
+    if (!validateProductForm(this.form, options, this.messageService)) {
       return;
     }
-
-    this.submitting = true;
-    const request$ = this.buildSaveRequest$();
-
-    request$.pipe(
+    this.submitting.set(true);
+    buildProductSaveRequest$(this.form, options, this.productService).pipe(
       timeout(this.requestTimeoutMs),
-      finalize(() => {
-        this.submitting = false;
-        this.cdr.markForCheck();
-      })
+      finalize(() => this.submitting.set(false))
     ).subscribe({
       next: () => {
-        this.messageService.success(this.isEdit ? 'Produto atualizado.' : 'Produto criado.');
+        this.messageService.success(this.isEdit() ? 'Produto atualizado.' : 'Produto criado.');
         this.router.navigate(['/produtos']);
       },
       error: () => {}
     });
   }
 
-  private validateBeforeSubmit(): boolean {
-    if (this.isEdit) {
-      if (this.form.invalid) {
-        this.form.markAllAsTouched();
-        return false;
-      }
-      return true;
-    }
-
-    const useImport = this.importFromExternal && this.selectedExternalId != null;
-
-    if (useImport) {
-      return true;
-    }
-
-    const nameValue = this.form.get('name')?.value?.trim();
-    const priceValue = this.form.get('price')?.value ?? 0;
-
-    if (!nameValue || priceValue < 0) {
-      this.form.markAllAsTouched();
-      if (!nameValue) {
-        this.messageService.warning('Preencha o nome do produto.');
-      }
-      return false;
-    }
-
-    return true;
-  }
-
-  private buildSaveRequest$() {
-    const payload = this.form.getRawValue();
-
-    if (this.isEdit) {
-      return this.productService.update({
-        id: payload.id,
-        name: payload.name,
-        description: payload.description || null,
-        price: payload.price,
-        isActive: payload.isActive
-      });
-    }
-
-    const useImport = this.importFromExternal && this.selectedExternalId != null;
-
-    return this.productService.create(
-      useImport
-        ? { importFromExternalId: this.selectedExternalId!, isActive: payload.isActive }
-        : {
-            name: payload.name,
-            description: payload.description || null,
-            price: payload.price,
-            isActive: payload.isActive
-          }
-    );
-  }
-
   private updateFormFieldsState(): void {
-    const shouldDisable = !this.isEdit && this.importFromExternal;
+    const shouldDisable = !this.isEdit() && this.importFromExternal();
     const fields = ['name', 'price', 'description', 'isActive'] as const;
-
     for (const field of fields) {
       const control = this.form.get(field);
-      if (shouldDisable) {
-        control?.disable();
-      } else {
-        control?.enable();
-      }
+      if (shouldDisable) control?.disable();
+      else control?.enable();
     }
   }
 }

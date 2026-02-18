@@ -3,8 +3,8 @@
   subtitle="Gerencie seu catálogo de produtos"
   [breadcrumb]="[{ label: 'Início', routerLink: '/' }, { label: 'Produtos' }]"
 >
-  <button nz-button nzShape="circle" class="btn-refresh" nz-tooltip nzTooltipTitle="Atualizar lista" (click)="loadProducts()" [disabled]="loading" aria-label="Atualizar lista" actions>
-    <svg class="icon-inline" [class.spinning]="loading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <button nz-button nzShape="circle" class="btn-refresh" nz-tooltip nzTooltipTitle="Atualizar lista" (click)="loadProducts()" [disabled]="loading()" aria-label="Atualizar lista" actions>
+    <svg class="icon-inline" [class.spinning]="loading()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="23 4 23 10 17 10"/>
       <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
     </svg>
@@ -106,7 +106,7 @@
   <nz-table
     #productTable
     [nzData]="filteredProducts()"
-    [nzLoading]="loading"
+    [nzLoading]="loading()"
     [nzFrontPagination]="false"
     [nzShowPagination]="false"
     [nzNoResult]="noResultTpl"

@@ -1,12 +1,5 @@
-:host-context(body.theme-dark) ::ng-deep .page-header-actions .btn-refresh {
-  background: transparent !important;
-  border-color: var(--app-border-color) !important;
-  color: var(--app-text) !important;
-}
-
-:host-context(body.theme-dark) ::ng-deep .page-header-actions .btn-refresh:hover:not([disabled]) {
-  border-color: var(--app-primary) !important;
-  color: var(--app-primary) !important;
+:host {
+  display: block;
 }
 
 :host-context(body.theme-dark) .action-edit,
@@ -137,44 +130,10 @@
   overflow: hidden;
 }
 
-.table-card ::ng-deep .ant-table {
-  background: transparent;
-}
-
-.table-card ::ng-deep .ant-table-thead > tr > th {
-  background: transparent;
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--app-text-secondary);
-  border-bottom: 1px solid var(--app-border-color);
-}
-
-.table-card ::ng-deep .ant-table-tbody > tr > td {
-  border-bottom: 1px solid var(--app-border-color);
-  vertical-align: middle;
-}
-
-.table-card ::ng-deep .ant-table-tbody > tr:last-child > td {
-  border-bottom: none;
-}
-
-.table-card ::ng-deep .ant-table-tbody > tr:hover > td {
-  background: var(--app-table-row-hover);
-}
-
 .product-info {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-::ng-deep .product-info .ant-avatar {
-  border-radius: 10px !important;
-  font-weight: 700;
-  font-size: 15px;
-  filter: saturate(0.85);
 }
 
 .product-name-group {
@@ -216,15 +175,6 @@
 
 .col-status {
   white-space: nowrap;
-}
-
-::ng-deep .col-status .ant-tag {
-  margin: 0;
-  border-radius: 20px;
-  padding: 2px 12px;
-  font-weight: 600;
-  font-size: 12px;
-  border: none;
 }
 
 .col-actions {

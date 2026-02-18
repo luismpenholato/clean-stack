@@ -1,40 +1,48 @@
-import { Directive, ElementRef, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  OnDestroy,
+  booleanAttribute,
+  effect,
+  inject,
+  input
+} from '@angular/core';
 
 @Directive({
-  selector: '[appAutofocus]',
-  standalone: true
+  selector: '[appAutofocus]'
 })
-export class AutofocusDirective implements OnChanges, OnDestroy {
-  @Input() appAutofocus: boolean | unknown = true;
+export class AutofocusDirective implements OnDestroy {
+  readonly appAutofocus = input(true, { transform: booleanAttribute });
 
+  private readonly el = inject(ElementRef<HTMLElement>);
   private focusTimer: ReturnType<typeof setTimeout> | null = null;
 
-  constructor(private readonly el: ElementRef<HTMLElement>) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const value = changes['appAutofocus'];
-    const shouldFocus = this.appAutofocus === true || this.appAutofocus === '';
-    if (value && shouldFocus) {
-      this.scheduleFocus();
-    } else if (value && !shouldFocus && this.focusTimer != null) {
-      clearTimeout(this.focusTimer);
-      this.focusTimer = null;
-    }
+  constructor() {
+    effect(() => {
+      if (this.appAutofocus()) {
+        this.scheduleFocus();
+      } else {
+        this.clearFocus();
+      }
+    });
   }
 
   ngOnDestroy(): void {
-    if (this.focusTimer != null) {
-      clearTimeout(this.focusTimer);
-    }
+    this.clearFocus();
   }
 
   private scheduleFocus(): void {
-    if (this.focusTimer != null) {
-      clearTimeout(this.focusTimer);
-    }
+    if (this.focusTimer != null) return;
     this.focusTimer = setTimeout(() => {
       this.focusTimer = null;
       this.el.nativeElement.focus();
     }, 100);
+  }
+
+  private clearFocus(): void {
+    if (this.focusTimer != null) {
+      clearTimeout(this.focusTimer);
+      this.focusTimer = null;
+    }
   }
 }

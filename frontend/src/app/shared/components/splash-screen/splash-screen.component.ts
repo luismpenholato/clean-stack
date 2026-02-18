@@ -1,8 +1,9 @@
-import { Component, signal, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-splash-screen',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'app-splash-screen' },
   templateUrl: './splash-screen.component.html',
   styleUrl: './splash-screen.component.scss'
 })

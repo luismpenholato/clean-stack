@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -8,7 +8,8 @@ import { LayoutService } from '../../shared/services/layout.service';
 
 @Component({
   selector: 'app-main-layout',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'app-main-layout' },
   imports: [
     RouterOutlet,
     RouterLink,

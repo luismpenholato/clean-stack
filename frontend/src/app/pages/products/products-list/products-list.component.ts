@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ChangeDetectorRef, Component, OnInit, inject, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -23,7 +23,8 @@ type StatusFilter = 'all' | 'active' | 'inactive';
 
 @Component({
   selector: 'app-products-list',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'app-products-list' },
   imports: [
     CommonModule,
     FormsModule,
@@ -47,14 +48,13 @@ type StatusFilter = 'all' | 'active' | 'inactive';
 export class ProductsListComponent implements OnInit {
   private readonly productService = inject(ProductService);
   private readonly messageService = inject(NzMessageService);
-  private readonly cdr = inject(ChangeDetectorRef);
   private readonly requestTimeoutMs = 10_000;
 
   private readonly allProducts = signal<Product[]>([]);
 
   searchTerm = signal('');
   statusFilter = signal<StatusFilter>('all');
-  loading = false;
+  readonly loading = signal(false);
 
   readonly filteredProducts = computed(() => {
     let items = this.allProducts();
@@ -91,14 +91,11 @@ export class ProductsListComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.loading = true;
+    this.loading.set(true);
     this.productService.list().pipe(
       timeout(this.requestTimeoutMs),
       catchError(() => of([] as Product[])),
-      finalize(() => {
-        this.loading = false;
-        this.cdr.markForCheck();
-      })
+      finalize(() => this.loading.set(false))
     ).subscribe((items) => {
       this.allProducts.set(items ?? []);
     });
@@ -126,13 +123,10 @@ export class ProductsListComponent implements OnInit {
   }
 
   delete(product: Product): void {
-    this.loading = true;
+    this.loading.set(true);
     this.productService.delete(product.id).pipe(
       timeout(this.requestTimeoutMs),
-      finalize(() => {
-        this.loading = false;
-        this.cdr.markForCheck();
-      })
+      finalize(() => this.loading.set(false))
     ).subscribe({
       next: () => {
         this.messageService.success('Produto removido.');

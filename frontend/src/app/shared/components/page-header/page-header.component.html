@@ -4,7 +4,7 @@
     @if (subtitle()) {
       <p>{{ subtitle() }}</p>
     }
-    @if (breadcrumb().length > 0) {
+    @if (hasBreadcrumb()) {
       <nz-breadcrumb class="page-breadcrumb" nzSeparator=">">
         @for (item of breadcrumb(); track $index) {
           @if (item.routerLink && $index < breadcrumb().length - 1) {

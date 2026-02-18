@@ -1,11 +1,25 @@
 <nz-layout class="app-layout">
   <nz-header class="app-header">
-    <button nz-button nzType="text" class="menu-trigger" (click)="layout.setDrawerVisible(true)" aria-label="Abrir menu">
+    <button
+      nz-button
+      nzType="text"
+      class="menu-trigger"
+      type="button"
+      (click)="layout.setDrawerVisible(true)"
+      aria-label="Abrir menu"
+    >
       <span class="hamburger"></span>
     </button>
     <a routerLink="/" class="app-title">Boilerplate</a>
     <div class="app-header-actions">
-      <button class="theme-toggle" [class.is-dark]="layout.isDark()" (click)="layout.toggleTheme()" aria-label="Alternar tema">
+      <button
+        class="theme-toggle"
+        type="button"
+        [class.is-dark]="layout.isDark()"
+        [attr.aria-pressed]="layout.isDark()"
+        (click)="layout.toggleTheme()"
+        aria-label="Alternar tema"
+      >
         @if (layout.isDark()) {
           <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"/>

@@ -1,6 +1,6 @@
-# Boilerplate
+# CleanStack
 
-Fullstack boilerplate with a .NET 10 API backend, Angular frontend, and React 19 + Next.js 16 frontend — ready to serve as a foundation for enterprise, admin, and SaaS projects.
+A production-ready fullstack starter for building clean, scalable, and maintainable applications with .NET 10, Angular 21, React 19, and Next.js 16.
 
 ## Purpose
 
@@ -31,7 +31,7 @@ Each frontend is **independent**: choose one or use both depending on the produc
 ## Structure
 
 ```txt
-Boilerplate/
+clean-stack/
   backend-dotnet/    → .NET 10 API
   frontend-angular/  → Angular 21 (ng-zorro)
   frontend-react/    → React 19 + Next.js 16 + Ant Design

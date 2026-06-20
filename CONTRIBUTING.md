@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for considering a contribution to **Boilerplate**. This document describes the expected workflow for issues, branches, and pull requests.
+Thank you for considering a contribution to **CleanStack**. This document describes the expected workflow for issues, branches, and pull requests.
 
 ## Code of conduct
 
@@ -8,7 +8,7 @@ Be respectful and constructive. Focus on technical feedback, clarity, and mainta
 
 ## Before you start
 
-1. Check whether an [issue](https://github.com/luismpenholato/Boilerplate/issues) already exists for the topic.
+1. Check whether an [issue](https://github.com/luismpenholato/clean-stack/issues) already exists for the topic.
 2. For large changes, open an issue first to align on scope.
 3. Read the [README](README.md) and the documentation for the affected subproject (`backend-dotnet/`, `frontend-angular/`, `frontend-react/`).
 
@@ -95,7 +95,7 @@ docs(react): update MVP routes to /products
 
 ## Reporting bugs
 
-Use [Issues](https://github.com/luismpenholato/Boilerplate/issues) with:
+Use [Issues](https://github.com/luismpenholato/clean-stack/issues) with:
 
 - steps to reproduce;
 - expected vs. actual behavior;

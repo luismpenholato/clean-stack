@@ -74,7 +74,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         </button>
 
         <Link href="/products" className={styles.title}>
-          Boilerplate
+          CleanStack
         </Link>
 
         <div className={styles.headerActions}>

@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "boilerplate-frontend": {
+    "cleanstack-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -82,10 +82,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "boilerplate-frontend:build:production"
+              "buildTarget": "cleanstack-frontend:build:production"
             },
             "development": {
-              "buildTarget": "boilerplate-frontend:build:development"
+              "buildTarget": "cleanstack-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "buildTarget": "boilerplate-frontend:build:test",
+            "buildTarget": "cleanstack-frontend:build:test",
             "exclude": ["**/environments/environment.test.ts"]
           }
         }

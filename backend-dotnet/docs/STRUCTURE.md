@@ -9,14 +9,14 @@ backend-dotnet/
 ├── backend-dotnet.sln                     # Main solution (8 projects)
 ├── global.json                     # Minimum SDK 10.0.301
 ├── .editorconfig                   # Code standards and analyzers
-├── Boilerplate.Interface/          # HTTP API (application entry point)
+├── CleanStack.Interface/          # HTTP API (application entry point)
 │   ├── Controllers/
 │   ├── Extensions/                 (Swagger, HealthChecks)
 │   ├── Middlewares/                (GlobalExceptionMiddleware)
 │   ├── Program.cs
 │   ├── Dockerfile
 │   └── appsettings.*.json
-├── Boilerplate.Application/        # Use cases (CQRS)
+├── CleanStack.Application/        # Use cases (CQRS)
 │   └── Features/
 │       └── Products/
 │           ├── Commands/
@@ -27,42 +27,41 @@ backend-dotnet/
 │               ├── GetProductById/  (Query, Handler)
 │               ├── ListProducts/    (Query, Handler)
 │               └── ListExternalProducts/ (Query, Handler)
-├── Boilerplate.Domain/             # Entities and contracts
+├── CleanStack.Domain/             # Entities and contracts
 │   ├── Entities/
 │   ├── Interfaces/                 (Entities, Integration, Repositories, Services, UnitOfWork)
 │   └── Services/                   (e.g., ExternalProductService)
-├── Boilerplate.Infrastructure/     # EF Core persistence
+├── CleanStack.Infrastructure/     # EF Core persistence
 │   ├── Persistence/                (AppDbContext, Map)
 │   ├── Repositories/
 │   └── UnitOfWork/
-├── Boilerplate.CrossCutting/       # DTOs, options, and helpers
+├── CleanStack.CrossCutting/       # DTOs, options, and helpers
 │   ├── Dto/Products/
 │   ├── Helpers/
 │   └── Options/
-├── Boilerplate.CrossCutting.IOC/   # Dependency injection
+├── CleanStack.CrossCutting.IOC/   # Dependency injection
 │   └── DependencyInjection/        (ConfigureBindings*)
-├── Boilerplate.Migration/          # FluentMigrator console
+├── CleanStack.Migration/          # FluentMigrator console
 │   ├── Migrations/
 │   ├── Dockerfile
 │   └── appsettings.json
-├── Boilerplate.Tests/              # Unit tests (mirrors Application)
+├── CleanStack.Tests/              # Unit tests (mirrors Application)
 │   └── Features/Products/          (17 tests — handlers + validators)
-├── docs/
-│   └── STRUCTURE.md
-└── deploy/                         (Kubernetes manifests)
+└── docs/
+    └── STRUCTURE.md
 ```
 
-> **Database schema:** table changes go in **FluentMigrator** (`Boilerplate.Migration/Migrations/`). EF Core maps entities at runtime (`Persistence/Map/`). Keep both aligned manually.
+> **Database schema:** table changes go in **FluentMigrator** (`CleanStack.Migration/Migrations/`). EF Core maps entities at runtime (`Persistence/Map/`). Keep both aligned manually.
 
 ## Projects and responsibilities
 
-### Boilerplate.Interface
+### CleanStack.Interface
 
 - **Usage:** entry layer (REST API). Controllers receive HTTP and delegate to MediatR.
 - **Content:** `Controllers/`, `Program.cs`, `Middlewares/`, `Extensions/`, `appsettings`.
 - **Rule:** no business logic; only orchestrates calls and exposes DTOs.
 
-### Boilerplate.Application
+### CleanStack.Application
 
 - **Usage:** application orchestration and rules (CQRS). One **feature** per folder in `Features/`.
 - **Structure per feature (e.g., Products):**
@@ -71,37 +70,37 @@ backend-dotnet/
 - **Validation:** `await _validator.ValidateAndThrowAsync(request, cancellationToken)` at the start of Command handlers.
 - **Rule:** handlers use only Domain interfaces (UoW, repositories, services); return CrossCutting DTOs.
 
-### Boilerplate.Domain
+### CleanStack.Domain
 
 - **Usage:** entities and contracts (interfaces).
 - **Content:** `Entities/`, `Interfaces/`, `Services/` (domain implementations when appropriate).
 - **Rule:** interfaces define what the application needs; persistence lives in Infrastructure.
 - **Known debt:** references CrossCutting (DTOs) and Refit (attributes on `IExternalProductIntegration`) — see README.
 
-### Boilerplate.Infrastructure
+### CleanStack.Infrastructure
 
 - **Usage:** persistence with EF Core (SQL Server and InMemory).
 - **Content:** `Persistence/` (DbContext, Map), `Repositories/`, `UnitOfWork/`.
 - **Rule:** only project with EF Core; implements Domain interfaces.
 
-### Boilerplate.CrossCutting
+### CleanStack.CrossCutting
 
 - **Usage:** shared types and configuration (API DTOs, options, helpers).
 - **Content:** `Dto/Products/` (`ProductDto`, `ExternalProductDto`), `Options/` (`ExternalProductApiOptions`), `Helpers/` (`UrlHelper`).
 
-### Boilerplate.CrossCutting.IOC
+### CleanStack.CrossCutting.IOC
 
 - **Usage:** dependency registration (DI), called from `Program.cs`.
 - **Files:** `ConfigureBindingsOptions`, `ConfigureBindingsDatabaseContext`, `ConfigureBindingsMediatR`, `ConfigureBindingsRepository`, `ConfigureBindingsUnitOfWork`, `ConfigureBindingsServices`, `ConfigureBindingsIntegration` (Refit + Http.Resilience), `ConfigureBindingsValidator`, `ConfigureBindingsHealthChecks`.
 
-### Boilerplate.Migration
+### CleanStack.Migration
 
 - **Usage:** console that runs **FluentMigrator** migrations (SQL Server).
-- **Execution:** `dotnet run --project Boilerplate.Migration`
+- **Execution:** `dotnet run --project CleanStack.Migration`
 - **Config:** `ConnectionStrings:Default` in `appsettings.json` (Migration project).
 - **Rule:** new table/column = new class in `Migrations/` (e.g., `Mig_YYYYMMDDHHMMSS_Name.cs`).
 
-### Boilerplate.Tests
+### CleanStack.Tests
 
 - **Usage:** unit tests. Structure mirrors `Application/Features/`.
 - **Current coverage (Products):**
@@ -110,7 +109,7 @@ backend-dotnet/
 - **Conventions:**
   - Handler: mock UoW/repository/service/validator; test handler logic.
   - Validator: instantiate real validator; test FluentValidation rules.
-- Details in [`Boilerplate.Tests/README.md`](../Boilerplate.Tests/README.md).
+- Details in [`CleanStack.Tests/README.md`](../CleanStack.Tests/README.md).
 
 ## Request flow (example: create product)
 
@@ -150,6 +149,6 @@ Config: `ExternalProductApi:BaseUrl` (e.g., `https://fakestoreapi.com` in Develo
 | **CrossCutting** | New shared DTO or option. |
 | **CrossCutting.IOC** | New service/repository/integration = `ConfigureBindings*.cs`. |
 | **Migration** | SQL schema change = new FluentMigrator migration. |
-| **Tests** | New handler/validator = mirror folder in `Boilerplate.Tests/Features/`. |
+| **Tests** | New handler/validator = mirror folder in `CleanStack.Tests/Features/`. |
 
 Keeping this structure makes it easy to scale with new features without mixing responsibilities across layers.

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 
 const APP_NAME =
-  process.env.NEXT_PUBLIC_APP_NAME?.trim() ?? 'Boilerplate';
+  process.env.NEXT_PUBLIC_APP_NAME?.trim() ?? 'CleanStack';
 
 const DEFAULT_DESCRIPTION =
-  'Fullstack boilerplate for admin panels and SaaS applications.';
+  'Fullstack starter for admin panels and SaaS applications.';
 
 function getSiteUrl(): URL {
   const value = process.env.NEXT_PUBLIC_SITE_URL?.trim();

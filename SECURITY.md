@@ -11,7 +11,7 @@ Security fixes are considered for the main branch (`main`) and the latest publis
 | `frontend-react/` | Next.js app (client + server routes) |
 | Dependencies | NuGet / npm — we prioritize updates via PR or advisory |
 
-> This project is a **boilerplate/template**. Forks and production deployments are the responsibility of those who operate them (secrets, HTTPS, WAF, etc.).
+> This project is a **starter template**. Forks and production deployments are the responsibility of those who operate them (secrets, HTTPS, WAF, etc.).
 
 ## Reporting a vulnerability
 
@@ -19,7 +19,7 @@ Security fixes are considered for the main branch (`main`) and the latest publis
 
 Use one of these options:
 
-1. **[GitHub Security Advisories](https://github.com/luismpenholato/Boilerplate/security/advisories/new)** (recommended — private report)
+1. **[GitHub Security Advisories](https://github.com/luismpenholato/clean-stack/security/advisories/new)** (recommended — private report)
 2. Direct contact with the maintainer via an agreed private channel (if applicable)
 
 ### What to include in the report
@@ -43,7 +43,7 @@ Use one of these options:
 | Initial triage | 7 business days |
 | Fix or plan | based on severity |
 
-There is no formal SLA; this boilerplate is maintained as an open source project.
+There is no formal SLA; CleanStack is maintained as an open source project.
 
 ## Out of scope for this policy
 
@@ -51,7 +51,7 @@ There is no formal SLA; this boilerplate is maintained as an open source project
 - Vulnerabilities already fixed in newer upstream dependency versions
 - Issues in forks not merged into this repository
 
-## Best practices when using this boilerplate
+## Best practices when using CleanStack
 
 - Never commit secrets; use environment variables and secret managers
 - Enable HTTPS in production

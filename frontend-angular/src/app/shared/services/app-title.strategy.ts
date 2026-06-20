@@ -2,9 +2,9 @@ import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 
-const APP_NAME = 'Boilerplate';
+const APP_NAME = 'CleanStack';
 const DEFAULT_DESCRIPTION =
-  'Fullstack boilerplate for admin panels and SaaS applications.';
+  'Fullstack starter for admin panels and SaaS applications.';
 
 @Injectable()
 export class AppTitleStrategy extends TitleStrategy {

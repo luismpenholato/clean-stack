@@ -1,4 +1,4 @@
-# Boilerplate Frontend (Angular)
+# CleanStack Frontend (Angular)
 
 **Angular 21** SPA that consumes the REST API from the .NET backend.
 
@@ -51,7 +51,7 @@ App: http://localhost:3000
 npm run build
 ```
 
-Output in `dist/boilerplate-frontend/browser/`.
+Output in `dist/cleanstack-frontend/browser/`.
 
 ## Tests
 
@@ -121,8 +121,8 @@ Root redirect: `''` → `products`.
 ## Deploy
 
 ```bash
-docker build -t bp-frontend:latest .
-docker run -p 80:80 bp-frontend:latest
+docker build -t cleanstack-frontend:latest .
+docker run -p 80:80 cleanstack-frontend:latest
 ```
 
 Multi-stage: Node build + nginx (`Dockerfile` at project root).

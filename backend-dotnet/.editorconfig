@@ -1,4 +1,4 @@
-# Boilerplate Backend (.NET 10)
+# CleanStack Backend (.NET 10)
 # https://editorconfig.org
 # https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules
 
@@ -237,6 +237,6 @@ dotnet_diagnostic.IDE0060.severity = warning
 dotnet_diagnostic.IDE0160.severity = warning
 dotnet_diagnostic.IDE0161.severity = warning
 
-# Boilerplate: pragmático para template didático
+# CleanStack: pragmático para template didático
 dotnet_diagnostic.CA1062.severity = none
 dotnet_diagnostic.CA1848.severity = none

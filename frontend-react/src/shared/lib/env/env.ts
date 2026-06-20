@@ -23,5 +23,5 @@ function getApiBaseUrl(): string {
 
 export const env: Env = {
   apiBaseUrl: getApiBaseUrl(),
-  appName: process.env.NEXT_PUBLIC_APP_NAME?.trim() ?? 'Boilerplate',
+  appName: process.env.NEXT_PUBLIC_APP_NAME?.trim() ?? 'CleanStack',
 };

@@ -206,7 +206,7 @@ palette.ts  →  --app-* (CSS)  →  Ant Design token (var(--app-*))  →  style
 ```ts
 export const env = {
   apiBaseUrl: getApiBaseUrl(), // dev fallback: http://localhost:5000
-  appName: process.env.NEXT_PUBLIC_APP_NAME?.trim() ?? 'Boilerplate',
+  appName: process.env.NEXT_PUBLIC_APP_NAME?.trim() ?? 'CleanStack',
 };
 ```
 

@@ -1,4 +1,4 @@
-# Boilerplate React 19 + Next.js 16
+# CleanStack React 19 + Next.js 16
 
 React **19** frontend with **Next.js 16 App Router**, TypeScript, and **Ant Design** — a modern alternative to Angular for admin/SaaS apps.
 
@@ -45,7 +45,7 @@ Copy `.env.example` to `.env.local`:
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
-NEXT_PUBLIC_APP_NAME=Boilerplate
+NEXT_PUBLIC_APP_NAME=CleanStack
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
@@ -124,8 +124,8 @@ Design system details: [`docs/STRUCTURE.md`](docs/STRUCTURE.md#design-system-src
 ## Docker
 
 ```bash
-docker build -t bp-frontend-react:latest .
-docker run -p 3000:3000 -e NEXT_PUBLIC_API_BASE_URL=http://host.docker.internal:5000 bp-frontend-react:latest
+docker build -t cleanstack-frontend-react:latest .
+docker run -p 3000:3000 -e NEXT_PUBLIC_API_BASE_URL=http://host.docker.internal:5000 cleanstack-frontend-react:latest
 ```
 
 Available build args: `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_APP_NAME`.

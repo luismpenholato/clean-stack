@@ -1,4 +1,4 @@
-# Boilerplate Backend
+# CleanStack Backend
 
 REST API in **.NET 10** with layered architecture (Clean Architecture + CQRS).
 
@@ -38,14 +38,14 @@ Database / external APIs
 
 | Project | Responsibility |
 |---|---|
-| **Boilerplate.Domain** | Entities, interfaces (repositories, services, integrations) |
-| **Boilerplate.Application** | MediatR handlers, validators, features by folder |
-| **Boilerplate.Infrastructure** | DbContext, repositories, EF mappings |
-| **Boilerplate.CrossCutting** | DTOs, options, helpers |
-| **Boilerplate.CrossCutting.IOC** | Dependency registration (DI) |
-| **Boilerplate.Interface** | Controllers, Program, middlewares, Swagger |
-| **Boilerplate.Migration** | FluentMigrator console |
-| **Boilerplate.Tests** | Unit tests |
+| **CleanStack.Domain** | Entities, interfaces (repositories, services, integrations) |
+| **CleanStack.Application** | MediatR handlers, validators, features by folder |
+| **CleanStack.Infrastructure** | DbContext, repositories, EF mappings |
+| **CleanStack.CrossCutting** | DTOs, options, helpers |
+| **CleanStack.CrossCutting.IOC** | Dependency registration (DI) |
+| **CleanStack.Interface** | Controllers, Program, middlewares, Swagger |
+| **CleanStack.Migration** | FluentMigrator console |
+| **CleanStack.Tests** | Unit tests |
 
 ### Feature structure (Products example)
 
@@ -72,7 +72,7 @@ Tests/Features/Products/      → mirrors handlers and validators
 4. Repository/EF mapping in **Infrastructure**
 5. Endpoint in **Controller** (Interface)
 6. FluentMigrator migration if needed
-7. Tests in **Boilerplate.Tests** (handler + validator when applicable)
+7. Tests in **CleanStack.Tests** (handler + validator when applicable)
 8. DI registrations in **CrossCutting.IOC**
 
 ## Prerequisites
@@ -93,7 +93,7 @@ The `global.json` file pins the minimum SDK:
 ```bash
 cd backend-dotnet
 dotnet restore backend-dotnet.sln
-dotnet run --project Boilerplate.Interface
+dotnet run --project CleanStack.Interface
 ```
 
 - Swagger: https://localhost:5001/swagger
@@ -107,7 +107,7 @@ dotnet run --project Boilerplate.Interface
 ### Database migration
 
 ```bash
-dotnet run --project Boilerplate.Migration
+dotnet run --project CleanStack.Migration
 ```
 
 Uses `ConnectionStrings:Default` from the Migration project's `appsettings.json`. With **InMemory** provider on the API, migration is not required.
@@ -120,7 +120,7 @@ dotnet test backend-dotnet.sln
 
 Current coverage: all **Products** handlers and validators (17 tests).
 
-Details in [`Boilerplate.Tests/README.md`](Boilerplate.Tests/README.md).
+Details in [`CleanStack.Tests/README.md`](CleanStack.Tests/README.md).
 
 ## Build and formatting
 
@@ -150,13 +150,11 @@ Build from the `backend-dotnet/` root:
 
 ```bash
 # API
-docker build -t bp-api:latest -f Boilerplate.Interface/Dockerfile .
+docker build -t cleanstack-api:latest -f CleanStack.Interface/Dockerfile .
 
 # Migration
-docker build -t bp-migration:latest -f Boilerplate.Migration/Dockerfile .
+docker build -t cleanstack-migration:latest -f CleanStack.Migration/Dockerfile .
 ```
-
-- **Kubernetes:** [`deploy/api.yaml`](deploy/api.yaml), [`deploy/migration.yaml`](deploy/migration.yaml)
 
 ## Known architectural debt
 
@@ -170,5 +168,4 @@ docker build -t bp-migration:latest -f Boilerplate.Migration/Dockerfile .
 ## Additional documentation
 
 - [`docs/STRUCTURE.md`](docs/STRUCTURE.md) — detailed structure, flows, and endpoints
-- [`Boilerplate.Tests/README.md`](Boilerplate.Tests/README.md) — test conventions
-- [`deploy/README.md`](deploy/README.md) — Kubernetes manifests
+- [`CleanStack.Tests/README.md`](CleanStack.Tests/README.md) — test conventions

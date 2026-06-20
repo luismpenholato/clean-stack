@@ -36,6 +36,8 @@ clean-stack/
   frontend-angular/  → Angular 21 (ng-zorro)
   frontend-react/    → React 19 + Next.js 16 + Ant Design
   README.md
+  CONTRIBUTING.md
+  SECURITY.md
   LICENSE
 ```
 
@@ -46,7 +48,7 @@ clean-stack/
 ```bash
 cd backend-dotnet
 dotnet restore backend-dotnet.sln
-dotnet run --project Boilerplate.Interface
+dotnet run --project CleanStack.Interface
 ```
 
 Swagger: https://localhost:5001/swagger
@@ -151,7 +153,7 @@ Basic SEO is configured in both (title/description per route, `noindex` for admi
 # Backend
 cd backend-dotnet && dotnet build backend-dotnet.sln && dotnet test backend-dotnet.sln
 
-# Backend formatting (CI)
+# Backend formatting
 cd backend-dotnet && dotnet format backend-dotnet.sln --verify-no-changes
 
 # Angular
@@ -175,12 +177,12 @@ npx skills add luismpenholato/maurao-skills --skill react-nextjs-antd-clean-arch
 
 | Project | Docker |
 |---|---|
-| API | `backend-dotnet/Boilerplate.Interface/Dockerfile` |
-| Migration | `backend-dotnet/Boilerplate.Migration/Dockerfile` |
+| API | `backend-dotnet/CleanStack.Interface/Dockerfile` |
+| Migration | `backend-dotnet/CleanStack.Migration/Dockerfile` |
 | Angular | `frontend-angular/Dockerfile` |
 | React | `frontend-react/Dockerfile` |
 
-Kubernetes manifests: `backend-dotnet/deploy/`. See each project's README.
+See each project's README for build and run details.
 
 ## Suggested roadmap
 
@@ -189,7 +191,6 @@ Kubernetes manifests: `backend-dotnet/deploy/`. See each project's README.
 - [ ] Align API contracts between Angular and React (`Product.Id` long vs string)
 - [ ] Decouple Domain from CrossCutting/Refit (architectural refactor)
 - [ ] Migration Docker: copy `appsettings` in Release + `AddEnvironmentVariables`
-- [ ] Unified CI (backend build + both frontends + `dotnet format --verify-no-changes`)
 - [ ] Document minimum Node version in `.nvmrc`
 
 ## Prerequisites

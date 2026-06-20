@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'boilerplate.access_token';
+const TOKEN_KEY = 'cleanstack.access_token';
 
 export const authToken = {
   get(): string | null {

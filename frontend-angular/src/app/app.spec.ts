@@ -16,11 +16,11 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render layout with Boilerplate and menu', async () => {
+  it('should render layout with CleanStack and menu', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.app-title')?.textContent).toContain('Boilerplate');
+    expect(compiled.querySelector('.app-title')?.textContent).toContain('CleanStack');
   });
 });

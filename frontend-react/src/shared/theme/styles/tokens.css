@@ -1,0 +1,86 @@
+/**
+ * Tokens estruturais do produto (--app-*).
+ * Cores são injetadas em runtime via apply-tokens.ts (palette.ts).
+ * Valores abaixo em :root são fallback (tema claro) para first paint / SSR.
+ * Devem espelhar `lightPalette` em palette.ts.
+ */
+
+:root {
+  /* Brand (fallback light — sobrescritos por applyAppTokens) */
+  --app-primary: #4f46e5;
+  --app-primary-hover: #6366f1;
+
+  /* Surfaces */
+  --app-header-bg: #ffffff;
+  --app-content-bg: #ffffff;
+  --app-card-bg: #ffffff;
+  --app-input-bg: transparent;
+
+  /* Typography */
+  --app-text: rgba(15, 23, 42, 0.92);
+  --app-text-secondary: rgba(15, 23, 42, 0.6);
+
+  /* Borders & radius */
+  --app-border-color: rgba(15, 23, 42, 0.08);
+  --app-input-border: rgba(15, 23, 42, 0.12);
+  --app-input-focus-border: var(--app-primary);
+  --app-card-radius: 10px;
+  --app-radius-sm: 8px;
+  --app-radius-md: 10px;
+  --app-radius-lg: 12px;
+  --app-radius-pill: 20px;
+
+  /* Shadows */
+  --app-card-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  --app-header-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+
+  /* Layout */
+  --app-header-height: 64px;
+  --app-container-max-width: 1200px;
+  --app-form-max-width: 640px;
+
+  /* Spacing */
+  --app-space-xs: 4px;
+  --app-space-sm: 8px;
+  --app-space-md: 16px;
+  --app-space-lg: 24px;
+  --app-space-xl: 32px;
+  --app-space-2xl: 40px;
+
+  /* Z-index */
+  --app-z-header: 10;
+  --app-z-drawer: 1000;
+  --app-z-modal: 1100;
+  --app-z-notification: 1200;
+
+  /* Motion */
+  --app-transition: 0.2s ease;
+
+  /* Interactive (fallback light) */
+  --app-hover-bg: rgba(15, 23, 42, 0.04);
+  --app-table-header-bg: rgba(15, 23, 42, 0.06);
+  --app-table-row-hover: rgba(15, 23, 42, 0.03);
+  --app-select-option-hover: rgba(15, 23, 42, 0.06);
+  --app-menu-item-hover: rgba(79, 70, 229, 0.08);
+
+  /* Status */
+  --app-status-success-bg: rgba(16, 185, 129, 0.12);
+  --app-status-success-text: #047857;
+  --app-status-error-bg: rgba(239, 68, 68, 0.1);
+  --app-status-error-text: #b91c1c;
+
+  /* Metrics */
+  --app-metric-blue-bg: rgba(99, 102, 241, 0.1);
+  --app-metric-blue-text: #6366f1;
+  --app-metric-green-bg: rgba(16, 185, 129, 0.12);
+  --app-metric-green-text: #059669;
+  --app-metric-red-bg: rgba(239, 68, 68, 0.1);
+  --app-metric-red-text: #dc2626;
+  --app-metric-yellow-bg: rgba(245, 158, 11, 0.12);
+  --app-metric-yellow-text: #d97706;
+}
+
+/** Classe usada pelo ThemeProvider para hooks CSS legados (body.theme-dark). */
+body.theme-dark {
+  color-scheme: dark;
+}

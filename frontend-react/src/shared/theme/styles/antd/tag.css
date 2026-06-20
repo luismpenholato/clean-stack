@@ -1,0 +1,13 @@
+/* Tag — variantes semânticas do produto */
+
+.ant-tag.ant-tag-success {
+  background: var(--app-status-success-bg);
+  color: var(--app-status-success-text);
+  border: none;
+}
+
+.ant-tag.ant-tag-error {
+  background: var(--app-status-error-bg);
+  color: var(--app-status-error-text);
+  border: none;
+}

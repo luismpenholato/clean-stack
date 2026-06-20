@@ -1,0 +1,34 @@
+/* Menu — drawer lateral (drawer portaled no body via .app-drawer) */
+
+.app-drawer .drawer-menu.ant-menu,
+.app-main-layout .drawer-menu.ant-menu {
+  border: none;
+  background: transparent;
+}
+
+.app-drawer .drawer-menu.ant-menu .ant-menu-item,
+.app-main-layout .drawer-menu.ant-menu .ant-menu-item {
+  border-radius: var(--app-radius-sm);
+  margin: var(--app-space-xs) var(--app-space-sm);
+  width: calc(100% - var(--app-space-md));
+  color: var(--app-text);
+}
+
+.app-drawer .drawer-menu.ant-menu .ant-menu-item-selected,
+.app-main-layout .drawer-menu.ant-menu .ant-menu-item-selected {
+  background: var(--app-primary);
+  color: #fff;
+}
+
+.app-drawer .drawer-menu.ant-menu .ant-menu-item-selected .ant-menu-title-content,
+.app-drawer .drawer-menu.ant-menu .ant-menu-item-selected .anticon,
+.app-main-layout .drawer-menu.ant-menu .ant-menu-item-selected .ant-menu-title-content,
+.app-main-layout .drawer-menu.ant-menu .ant-menu-item-selected .anticon {
+  color: #fff;
+}
+
+.app-drawer .drawer-menu.ant-menu .ant-menu-item:hover:not(.ant-menu-item-selected),
+.app-main-layout .drawer-menu.ant-menu .ant-menu-item:hover:not(.ant-menu-item-selected) {
+  background: var(--app-menu-item-hover);
+  color: var(--app-text);
+}

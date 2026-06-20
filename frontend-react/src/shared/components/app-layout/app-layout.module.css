@@ -1,0 +1,110 @@
+.layout {
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--app-space-md);
+  height: var(--app-header-height);
+  padding: 0 var(--app-space-lg);
+  background: var(--app-header-bg);
+  border-bottom: 1px solid var(--app-border-color);
+  box-shadow: var(--app-header-shadow);
+  position: sticky;
+  top: 0;
+  z-index: var(--app-z-header);
+}
+
+.header :global(.ant-layout-header) {
+  background: var(--app-header-bg);
+}
+
+.menuTrigger {
+  color: var(--app-text);
+  padding: var(--app-space-sm);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--app-radius-sm);
+}
+
+.menuTrigger:hover {
+  background: var(--app-hover-bg);
+}
+
+.hamburger {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  box-shadow:
+    0 6px 0 currentColor,
+    0 -6px 0 currentColor;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--app-text);
+  text-decoration: none;
+}
+
+.title:hover {
+  color: var(--app-text);
+}
+
+.headerActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--app-radius-sm);
+  border: 1px solid var(--app-border-color);
+  background: var(--app-header-bg);
+  color: var(--app-text);
+  cursor: pointer;
+  transition: var(--app-transition);
+  padding: 0;
+}
+
+.themeToggle:hover {
+  background: var(--app-hover-bg);
+}
+
+.themeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.content {
+  padding: var(--app-space-lg) var(--app-space-lg) var(--app-space-2xl);
+  min-height: calc(100vh - var(--app-header-height));
+  background: var(--app-content-bg);
+}
+
+.container {
+  max-width: var(--app-container-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.drawerSectionTitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--app-text-secondary);
+  margin: var(--app-space-xs) 0 12px var(--app-space-sm);
+}
+
+.drawerMenu:global(.ant-menu) {
+  border: none;
+  background: transparent;
+}

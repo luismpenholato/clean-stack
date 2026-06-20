@@ -1,7 +1,0 @@
-# Use publish output as build context:
-#   dotnet publish Boilerplate.Migration -c Release -o ./publish-migration
-#   docker build -t bp-migration:latest -f Dockerfile.migration-publish ./publish-migration
-FROM mcr.microsoft.com/dotnet/runtime:9.0-alpine
-WORKDIR /app
-COPY . .
-CMD ["dotnet", "Boilerplate.Migration.dll"]

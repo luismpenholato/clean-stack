@@ -1,0 +1,24 @@
+/* Table */
+
+.ant-table {
+  color: var(--app-text);
+}
+
+.ant-table-thead > tr > th {
+  background: var(--app-table-header-bg);
+  color: var(--app-text);
+  border-color: var(--app-border-color);
+}
+
+.ant-table-tbody > tr > td {
+  border-color: var(--app-border-color);
+  color: var(--app-text);
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: var(--app-table-row-hover);
+}
+
+.ant-empty-description {
+  color: var(--app-text-secondary);
+}

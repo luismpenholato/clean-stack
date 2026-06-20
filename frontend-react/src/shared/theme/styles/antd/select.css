@@ -1,0 +1,40 @@
+/* Select — dropdown renderizado fora do ConfigProvider scope */
+
+.ant-select-selector {
+  background: var(--app-input-bg);
+  border-color: var(--app-input-border);
+  color: var(--app-text);
+}
+
+.ant-select-selection-placeholder {
+  color: var(--app-text-secondary);
+}
+
+.ant-select-focused .ant-select-selector,
+.ant-select-open .ant-select-selector {
+  border-color: var(--app-input-focus-border);
+  box-shadow: none;
+}
+
+.ant-select-dropdown {
+  background: var(--app-card-bg);
+  border: 1px solid var(--app-border-color);
+}
+
+.ant-select-item {
+  color: var(--app-text);
+}
+
+.ant-select-item-option {
+  color: var(--app-text);
+}
+
+.ant-select-item-option-active,
+.ant-select-item-option-selected {
+  background: var(--app-select-option-hover);
+  color: var(--app-text);
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  font-weight: 600;
+}

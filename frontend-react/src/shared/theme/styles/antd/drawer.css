@@ -1,0 +1,31 @@
+/* Drawer — portal + contraste do ícone fechar (paridade Angular) */
+
+.ant-drawer-content {
+  background: var(--app-header-bg);
+}
+
+.ant-drawer-header {
+  background: var(--app-header-bg);
+  border-color: var(--app-border-color);
+  color: var(--app-text);
+}
+
+.ant-drawer-body {
+  background: var(--app-header-bg);
+  color: var(--app-text);
+}
+
+.ant-drawer-title {
+  color: var(--app-text);
+}
+
+.ant-drawer-close,
+.ant-drawer-close:hover {
+  color: var(--app-text);
+}
+
+.ant-drawer-close .anticon,
+.ant-drawer-close .anticon svg {
+  color: var(--app-text);
+  fill: var(--app-text);
+}

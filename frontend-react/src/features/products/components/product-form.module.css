@@ -1,0 +1,46 @@
+.formContent {
+  max-width: var(--app-form-max-width);
+  margin-top: var(--app-space-sm);
+}
+
+.productForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--app-space-sm);
+}
+
+.formRow {
+  display: flex;
+  gap: var(--app-space-md);
+}
+
+.flex1 {
+  flex: 1;
+  min-width: 0;
+}
+
+.flex2 {
+  flex: 2;
+  min-width: 0;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  margin-top: var(--app-space-xl);
+  padding-top: var(--app-space-lg);
+  border-top: 1px solid var(--app-border-color);
+}
+
+.formLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 240px;
+}
+
+@media (max-width: 600px) {
+  .formRow {
+    flex-direction: column;
+  }
+}

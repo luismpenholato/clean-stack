@@ -1,0 +1,36 @@
+/* Button — primary e default alinhados ao Angular */
+
+.ant-btn-primary:not(:disabled) {
+  background: var(--app-primary);
+  border-color: var(--app-primary);
+  color: #fff;
+}
+
+.ant-btn-primary:not(:disabled):hover {
+  background: var(--app-primary-hover);
+  border-color: var(--app-primary-hover);
+  color: #fff;
+}
+
+.ant-btn-primary:not(:disabled):active {
+  background: var(--app-primary);
+  border-color: var(--app-primary);
+  color: #fff;
+}
+
+.ant-btn-default:not(:disabled) {
+  background: transparent;
+  border-color: var(--app-input-border);
+  color: var(--app-text);
+}
+
+.ant-btn-default:not(:disabled):hover {
+  border-color: var(--app-primary);
+  color: var(--app-primary);
+  background: transparent;
+}
+
+.ant-btn:focus-visible {
+  outline: 2px solid var(--app-primary);
+  outline-offset: 2px;
+}

@@ -1,0 +1,72 @@
+<nz-layout class="app-layout">
+  <nz-header class="app-header">
+    <button
+      nz-button
+      nzType="text"
+      class="menu-trigger"
+      type="button"
+      (click)="layout.setDrawerVisible(true)"
+      aria-label="Open menu"
+    >
+      <span class="hamburger"></span>
+    </button>
+    <a routerLink="/" class="app-title">Boilerplate</a>
+    <div class="app-header-actions">
+      <button
+        class="theme-toggle"
+        type="button"
+        [class.is-dark]="layout.isDark()"
+        [attr.aria-pressed]="layout.isDark()"
+        (click)="layout.toggleTheme()"
+        aria-label="Toggle theme"
+      >
+        @if (layout.isDark()) {
+          <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        } @else {
+          <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        }
+      </button>
+    </div>
+  </nz-header>
+
+  <nz-content class="app-content">
+    <div class="app-container">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+</nz-layout>
+
+<nz-drawer
+  [nzVisible]="layout.drawerVisible()"
+  nzPlacement="left"
+  nzTitle="Menu"
+  [nzWidth]="280"
+  nzWrapClassName="app-drawer"
+  (nzOnClose)="layout.setDrawerVisible(false)"
+>
+  <ng-container *nzDrawerContent>
+    <div class="drawer-section-title">Navigation</div>
+    <ul nz-menu nzMode="inline" nzTheme="light" class="drawer-menu">
+      <li
+        nz-menu-item
+        routerLink="/products"
+        routerLinkActive="ant-menu-item-selected"
+        (click)="layout.setDrawerVisible(false)"
+      >
+        Products
+      </li>
+    </ul>
+  </ng-container>
+</nz-drawer>

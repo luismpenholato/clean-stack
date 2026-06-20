@@ -1,0 +1,5 @@
+/* Card — alinhamento com tokens --app-* */
+
+.ant-card-head-title {
+  color: var(--app-text);
+}

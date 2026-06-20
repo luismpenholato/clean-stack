@@ -1,0 +1,13 @@
+/* Modal, Popover & Popconfirm */
+
+.ant-modal-content {
+  border: 1px solid var(--app-border-color);
+}
+
+.ant-modal-header {
+  background: transparent;
+}
+
+.ant-popover-arrow::after {
+  background: var(--app-card-bg);
+}

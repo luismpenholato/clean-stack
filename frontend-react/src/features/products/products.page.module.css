@@ -1,0 +1,113 @@
+.page {
+  min-width: 0;
+}
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--app-space-md);
+  margin-bottom: var(--app-space-lg);
+}
+
+.metricCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px var(--app-space-lg);
+  background: var(--app-card-bg);
+  border-radius: var(--app-card-radius);
+  border: 1px solid var(--app-border-color);
+  transition: box-shadow var(--app-transition);
+}
+
+.metricCard:hover {
+  box-shadow: var(--app-card-shadow);
+}
+
+.metricContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metricLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--app-text-secondary);
+}
+
+.metricValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--app-text);
+  letter-spacing: -0.02em;
+}
+
+.metricIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--app-radius-lg);
+  flex-shrink: 0;
+}
+
+.metricIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.metricIconBlue {
+  background: var(--app-metric-blue-bg);
+  color: var(--app-metric-blue-text);
+}
+
+.metricIconGreen {
+  background: var(--app-metric-green-bg);
+  color: var(--app-metric-green-text);
+}
+
+.metricIconRed {
+  background: var(--app-metric-red-bg);
+  color: var(--app-metric-red-text);
+}
+
+.metricIconYellow {
+  background: var(--app-metric-yellow-bg);
+  color: var(--app-metric-yellow-text);
+}
+
+.filterBar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.searchGroup {
+  flex: 1;
+}
+
+.statusFilter {
+  min-width: 140px;
+}
+
+@media (max-width: 900px) {
+  .metricsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .metricsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .filterBar {
+    flex-direction: column;
+  }
+
+  .statusFilter {
+    width: 100%;
+  }
+}

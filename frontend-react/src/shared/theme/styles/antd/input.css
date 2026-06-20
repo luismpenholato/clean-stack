@@ -1,0 +1,44 @@
+/* Input, InputNumber & Select — foco e cores (paridade Angular) */
+
+.ant-input,
+.ant-input-number,
+.ant-input-number-input,
+textarea.ant-input {
+  background: var(--app-input-bg);
+  border-color: var(--app-input-border);
+  color: var(--app-text);
+}
+
+.ant-input::placeholder,
+.ant-input-number-input::placeholder,
+textarea.ant-input::placeholder {
+  color: var(--app-text-secondary);
+}
+
+.ant-input-affix-wrapper {
+  background: var(--app-input-bg);
+  border-color: var(--app-input-border);
+  color: var(--app-text);
+}
+
+.ant-input-affix-wrapper > .ant-input {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper-focused,
+.ant-input-number-focused,
+textarea.ant-input:focus {
+  border-color: var(--app-input-focus-border);
+  box-shadow: none;
+}
+
+.ant-input:hover:not(:focus):not(.ant-input-disabled),
+.ant-input-number:hover:not(.ant-input-number-disabled),
+.ant-input-affix-wrapper:hover:not(.ant-input-affix-wrapper-disabled),
+textarea.ant-input:hover:not(:focus) {
+  border-color: var(--app-input-border);
+}

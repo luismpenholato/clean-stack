@@ -1,9 +1,0 @@
-# Use publish output as build context:
-#   dotnet publish Boilerplate.Interface -c Release -o ./publish
-#   docker build -t bp-api:latest -f Dockerfile.publish ./publish
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine
-WORKDIR /app
-COPY . .
-ENV ASPNETCORE_URLS=http://+:80
-EXPOSE 80
-ENTRYPOINT ["dotnet", "Boilerplate.Interface.dll"]

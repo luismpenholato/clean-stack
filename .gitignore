@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.next/
+out/
+build/
+coverage/
+
+# .NET (when working from repo root)
+bin/
+obj/
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# IDE and OS
+.vs/
+.idea/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
+
+# Local database files
+*.db
+*.sqlite
+*.mdf
+*.ldf
+
+# Publish
+publish/
+publish-*/

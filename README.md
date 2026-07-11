@@ -1,47 +1,100 @@
 # CleanStack
 
-A production-ready fullstack starter for building clean, scalable, and maintainable applications with .NET 10, Angular 21, React 19, and Next.js 16.
+A production-ready full stack starter for building maintainable applications with .NET, Angular, React and Next.js.
 
-## Purpose
+Use the .NET backend with either Angular or React/Next.js. The frontends are independent and should not be mixed within the same product.
 
-Provide a professional, consistent, and easy-to-understand foundation with:
+[![Backend CI](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml)
+[![Angular CI](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml)
+[![React CI](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml/badge.svg)](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
+![Angular 21](https://img.shields.io/badge/Angular-21-DD0031?logo=angular&logoColor=white)
+![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
+![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/luismpenholato?label=Sponsor&logo=githubsponsors&logoColor=white&color=ea4aaa)](https://github.com/sponsors/luismpenholato)
 
-- REST API in Clean Architecture + CQRS
-- Angular SPA with ng-zorro (traditional enterprise admin)
-- React 19 + Next.js 16 app with Ant Design (SaaS, modern dashboards, SSR/SEO)
+## Key features
 
-Each frontend is **independent**: choose one or use both depending on the product.
+- **Clean Architecture** backend with layered projects and clear boundaries
+- **CQRS** with MediatR (Commands and Queries per feature)
+- **FluentValidation** in handlers (`ValidateAndThrowAsync`)
+- **EF Core** and **FluentMigrator** (InMemory for dev, SQL Server for production-style setups)
+- Structured logging with **Serilog**
+- External API integration with **Refit**
+- **Angular** enterprise SPA option (ng-zorro, signals, Vitest)
+- **React / Next.js** SaaS and SSR option (Ant Design, TanStack Query, App Router)
+- Automated tests across backend and both frontends
+- **Docker** support per application
+- **Independent frontends** — choose one stack per product
 
-## Projects
+## Choosing a frontend
 
-| Project | Description | Main stack |
-|---|---|---|
-| [`backend-dotnet/`](backend-dotnet/) | .NET 10 API with clean architecture | ASP.NET Core, EF Core, MediatR, FluentValidation, FluentMigrator, Refit, Serilog |
-| [`frontend-angular/`](frontend-angular/) | Angular 21 SPA | ng-zorro-antd, RxJS, Vitest |
-| [`frontend-react/`](frontend-react/) | React 19 + Next.js 16 app | Ant Design, TanStack Query, Axios, React Hook Form, Zod |
-
-## Target versions
-
-| Layer | Version |
+| Scenario | Recommendation |
 |---|---|
-| Backend | **.NET 10 LTS** (SDK 10.0.301+) |
-| Angular | **21.x** (latest stable patch on the 21 line) |
-| Next.js | **16.x + React 19.x** |
+| Enterprise admin, traditional SPA, Angular team | [`frontend-angular/`](frontend-angular/) — Angular 21 + ng-zorro |
+| New SaaS, SSR, SEO, App Router, React ecosystem | [`frontend-react/`](frontend-react/) — React 19 + Next.js 16 + Ant Design |
+| Same backend, different products | Use **one frontend per product** — do not mix Angular and React patterns in the same app |
 
-## Structure
+Both frontends consume the same REST API and share UI route conventions (`/products`, `/products/new`, `/products/:id/edit`), but they are separate codebases. Pick the stack that fits your team and product; you normally choose **one** frontend when starting a new product.
 
-```txt
-clean-stack/
-  backend-dotnet/    → .NET 10 API
-  frontend-angular/  → Angular 21 (ng-zorro)
-  frontend-react/    → React 19 + Next.js 16 + Ant Design
-  README.md
-  CONTRIBUTING.md
-  SECURITY.md
-  LICENSE
+## Architecture
+
+```mermaid
+flowchart LR
+    Angular[Angular SPA] --> API[ASP.NET Core API]
+    React[React / Next.js] --> API
+    API --> Application[Application / CQRS]
+    Application --> Domain[Domain]
+    Application --> Infrastructure[Infrastructure]
+    Infrastructure --> Database[(SQL Server)]
+    Infrastructure --> External[External APIs]
 ```
 
+In development, the API can use an **InMemory** database instead of SQL Server (see [Configuration](#configuration)).
+
+### Backend request flow
+
+```txt
+Controller → MediatR → Handler → Repository/Service → Database or external API
+```
+
+| Layer | Responsibility |
+|---|---|
+| **Domain** | Entities, repository and service interfaces |
+| **Application** | Commands/Queries, handlers, validators (`Features/`) |
+| **Infrastructure** | EF Core, repositories, HTTP integrations |
+| **Interface** | Controllers, `Program`, middlewares, Swagger |
+| **CrossCutting** | DTOs, options, helpers |
+| **Migration** | FluentMigrator (SQL schema) |
+| **Tests** | Mirror `Application/Features/` |
+
+Details: [`backend-dotnet/README.md`](backend-dotnet/README.md).
+
+## Screenshots
+
+<!-- Add docs/images/angular-products.png -->
+<!-- Add docs/images/react-products.png -->
+<!-- Add docs/images/swagger.png -->
+
+Screenshots will be added under [`docs/images/`](docs/images/) as the repository matures. Expected captures:
+
+| File | Description |
+|---|---|
+| `docs/images/angular-products.png` | Angular products listing |
+| `docs/images/react-products.png` | React/Next.js products listing |
+| `docs/images/swagger.png` | Swagger UI for the API |
+
 ## Quick start
+
+### Prerequisites
+
+| Tool | Minimum version | Notes |
+|---|---|---|
+| [.NET SDK](https://dotnet.microsoft.com/download/dotnet/10.0) | **10.0.301+** | Pinned in [`backend-dotnet/global.json`](backend-dotnet/global.json) |
+| [Node.js](https://nodejs.org/) | **24+** | See `.nvmrc` in each frontend folder |
+| npm | **8+** (included with Node) | Use `npm ci` when `package-lock.json` is present |
+| Docker | optional | Per-application Dockerfiles |
 
 ### Backend
 
@@ -51,13 +104,14 @@ dotnet restore backend-dotnet.sln
 dotnet run --project CleanStack.Interface
 ```
 
-Swagger: https://localhost:5001/swagger
+- Swagger: https://localhost:5001/swagger
+- HTTP API: http://localhost:5000
 
 ### Frontend Angular
 
 ```bash
 cd frontend-angular
-npm install
+npm ci
 npm start
 ```
 
@@ -67,101 +121,140 @@ App: http://localhost:3000
 
 ```bash
 cd frontend-react
-npm install
+npm ci
 cp .env.example .env.local
 npm run dev
 ```
 
-App: http://localhost:3000 (use another port if Angular is already running)
+App: http://localhost:3000 — use another port if Angular is already running (`npm run dev -- -p 3001`).
 
-## Key environment variables
+> Run the backend in parallel. Both frontends target `http://localhost:5000` for the API in development.
+
+## Repository structure
+
+```txt
+clean-stack/
+  backend-dotnet/     → .NET 10 API (Clean Architecture + CQRS)
+  frontend-angular/   → Angular 21 SPA (ng-zorro)
+  frontend-react/     → React 19 + Next.js 16 (Ant Design)
+  docs/images/        → screenshots (planned)
+  .github/            → CI workflows, issue/PR templates
+  README.md
+  CONTRIBUTING.md
+  SECURITY.md
+  CODE_OF_CONDUCT.md
+  CHANGELOG.md
+  LICENSE
+```
+
+| Project | Stack highlights |
+|---|---|
+| [`backend-dotnet/`](backend-dotnet/) | ASP.NET Core, EF Core, MediatR, FluentValidation, FluentMigrator, Refit, Serilog |
+| [`frontend-angular/`](frontend-angular/) | ng-zorro-antd, RxJS, Vitest |
+| [`frontend-react/`](frontend-react/) | Ant Design, TanStack Query, Axios, React Hook Form, Zod, Vitest |
+
+## Validation commands
+
+Run these before opening a pull request for the affected area:
+
+```bash
+# Backend
+cd backend-dotnet
+dotnet restore backend-dotnet.sln
+dotnet build backend-dotnet.sln --configuration Release
+dotnet test backend-dotnet.sln --configuration Release
+dotnet format backend-dotnet.sln --verify-no-changes
+
+# Angular
+cd frontend-angular
+npm ci
+npm run build
+npm test
+
+# React
+cd frontend-react
+npm ci
+npm run lint
+npm run test
+npm run build
+```
+
+## Configuration
 
 ### Backend
 
 | Variable / key | Description |
 |---|---|
 | `ConnectionStrings__Default` | SQL Server connection string |
-| `Database:Provider` | `InMemory` (dev) or `SqlServer` |
-| `ExternalProductApi__BaseUrl` | External API URL (e.g., FakeStore) |
+| `Database:Provider` | `InMemory` (dev default) or `SqlServer` |
+| `ExternalProductApi__BaseUrl` | External API URL (e.g. FakeStore) |
 
-See [`backend-dotnet/README.md`](backend-dotnet/README.md) for details.
+See [`backend-dotnet/README.md`](backend-dotnet/README.md).
 
 ### Frontend Angular
 
 | File | Key |
 |---|---|
-| `src/environments/environment.development.ts` | `apiBaseUrl` |
+| `src/environments/environment.development.ts` | `apiBaseUrl` (`http://localhost:5000`) |
 
 ### Frontend React
+
+Copy [`.env.example`](frontend-react/.env.example) to `.env.local`:
 
 | Variable | Description |
 |---|---|
-| `NEXT_PUBLIC_API_BASE_URL` | API base URL (e.g., `http://localhost:5000`) |
+| `NEXT_PUBLIC_API_BASE_URL` | API base URL (e.g. `http://localhost:5000`) |
 | `NEXT_PUBLIC_APP_NAME` | App display name and SEO tags |
 | `NEXT_PUBLIC_SITE_URL` | Public site URL (metadata, sitemap, Open Graph) |
 
-## Architecture conventions
+## Docker
 
-### Backend
+Build images from each project directory:
 
-- **Domain** → entities and interfaces
-- **Application** → Commands/Queries (MediatR), validators, vertical slice in `Features/`
-- **Infrastructure** → EF Core, repositories
-- **Interface** → Controllers, Program, middlewares
-- **CrossCutting** → DTOs, options, helpers
-- **Migration** → FluentMigrator (SQL schema)
-- **Tests** → mirror `Application/Features/` (handlers + validators)
-
-Flow: `Controller → MediatR → Handler → Repository/Service → Database or external API`
-
-Validation: `ValidateAndThrowAsync` in the handler + validator registration by assembly.
-
-### Frontend Angular
-
-- `pages/` per feature (vertical slice)
-- `shared/` for reusable components, interceptors, pipes
-- Standalone components, signals, OnPush
-
-### Frontend React
-
-- `src/app/` → routes and layouts only
-- `src/features/` → domains and screens
-- `src/shared/` → libs, providers, generic components, **`shared/theme/`** (design system)
-
-### URLs (UI vs API)
-
-| Layer | Convention | Example |
-|---|---|---|
-| UI routes (Angular and React) | English | `/products`, `/products/new`, `/products/:id/edit` |
-| REST endpoints | English | `/api/products` |
-
-Both frontends use **only** `/products/*` in the UI.
-
-Basic SEO is configured in both (title/description per route, `noindex` for admin app).
-
-## How to choose between Angular and React
-
-| Scenario | Recommendation |
+| Service | Dockerfile |
 |---|---|
-| Enterprise admin, traditional SPA, Angular team | **frontend-angular/** (Angular + ng-zorro) |
-| New SaaS, SSR, SEO, App Router, React ecosystem | **frontend-react/** (React 19 + Next.js 16 + Ant Design) |
-| Same backend, different products | Use one frontend per product — do not mix patterns |
-
-## Main commands
+| API | [`backend-dotnet/CleanStack.Interface/Dockerfile`](backend-dotnet/CleanStack.Interface/Dockerfile) |
+| Migration | [`backend-dotnet/CleanStack.Migration/Dockerfile`](backend-dotnet/CleanStack.Migration/Dockerfile) |
+| Angular | [`frontend-angular/Dockerfile`](frontend-angular/Dockerfile) |
+| React | [`frontend-react/Dockerfile`](frontend-react/Dockerfile) |
 
 ```bash
-# Backend
-cd backend-dotnet && dotnet build backend-dotnet.sln && dotnet test backend-dotnet.sln
+# API (from backend-dotnet/)
+docker build -t cleanstack-api:latest -f CleanStack.Interface/Dockerfile .
 
-# Backend formatting
-cd backend-dotnet && dotnet format backend-dotnet.sln --verify-no-changes
+# Angular (from frontend-angular/)
+docker build -t cleanstack-angular:latest .
 
-# Angular
-cd frontend-angular && npm run build && npm test
-
-# React
-cd frontend-react && npm run lint && npm run test && npm run build
+# React (from frontend-react/)
+docker build -t cleanstack-react:latest .
 ```
+
+A root `docker-compose.yml` is planned once SQL Server, migrations and services can start together without code changes (see [Roadmap](#roadmap)).
+
+## Roadmap
+
+### Security
+
+- [ ] Real JWT authentication in the backend (`/api/auth/login`)
+- [ ] Route guard / middleware in `frontend-react`
+
+### Architecture
+
+- [ ] Align API contracts between Angular and React (`Product.Id` long vs string)
+- [ ] Decouple Domain from CrossCutting / Refit (dependency inversion)
+
+### Frontend
+
+- [ ] Global `401` interceptor in React when real auth exists
+
+### Developer Experience
+
+- [x] Document minimum Node version in per-frontend `.nvmrc` files
+- [ ] Root `docker-compose.yml` with SQL Server, migrations and profile-based frontends
+
+### Deployment
+
+- [ ] Migration Docker: copy `appsettings.json` in Release and support environment variables
 
 ## Skills for AI agents
 
@@ -173,31 +266,20 @@ npx skills add luismpenholato/maurao-skills --skill angular-frontend-clean-archi
 npx skills add luismpenholato/maurao-skills --skill react-nextjs-antd-clean-architecture
 ```
 
-## Deploy
+## Contributing
 
-| Project | Docker |
-|---|---|
-| API | `backend-dotnet/CleanStack.Interface/Dockerfile` |
-| Migration | `backend-dotnet/CleanStack.Migration/Dockerfile` |
-| Angular | `frontend-angular/Dockerfile` |
-| React | `frontend-react/Dockerfile` |
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, conventions, and the pull request workflow.
 
-See each project's README for build and run details.
+For structural changes, open an [architecture discussion](.github/ISSUE_TEMPLATE/architecture-discussion.yml) before large refactors.
 
-## Suggested roadmap
+## Security
 
-- [ ] Real JWT authentication in the backend (endpoint `/api/auth/login`)
-- [ ] Route guard/middleware in `frontend-react`
-- [ ] Align API contracts between Angular and React (`Product.Id` long vs string)
-- [ ] Decouple Domain from CrossCutting/Refit (architectural refactor)
-- [ ] Migration Docker: copy `appsettings` in Release + `AddEnvironmentVariables`
-- [ ] Document minimum Node version in `.nvmrc`
+Report vulnerabilities privately — **do not** open public issues. See [SECURITY.md](SECURITY.md).
 
-## Prerequisites
+## Support
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
-- [Node.js v24+](https://nodejs.org/) (Angular); Node 20+ works for Next.js
-- Docker (optional)
+- [Issues](https://github.com/luismpenholato/clean-stack/issues) for bugs and feature requests
+- [GitHub Sponsors](https://github.com/sponsors/luismpenholato) to support ongoing maintenance
 
 ## License
 
@@ -206,7 +288,9 @@ This project is licensed under the [MIT License](LICENSE).
 ## Community
 
 | Document | Description |
-|-----------|-----------|
+|---|---|
 | [Contributing](CONTRIBUTING.md) | How to contribute, standards, and PR workflow |
 | [Security](SECURITY.md) | Responsible vulnerability reporting |
+| [Code of Conduct](CODE_OF_CONDUCT.md) | Community standards |
+| [Changelog](CHANGELOG.md) | Notable changes |
 | [License](LICENSE) | MIT License |

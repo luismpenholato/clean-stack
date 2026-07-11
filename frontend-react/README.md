@@ -1,5 +1,7 @@
 # CleanStack React 19 + Next.js 16
 
+[Back to root documentation](../README.md)
+
 React **19** frontend with **Next.js 16 App Router**, TypeScript, and **Ant Design** — a modern alternative to Angular for admin/SaaS apps.
 
 ## Stack
@@ -29,10 +31,15 @@ docs/STRUCTURE.md         → detailed documentation
 
 Summary: no business logic in `src/app`; domain in `src/features/`; reusable code in `src/shared/`. Routes, checklist, and details in [`docs/STRUCTURE.md`](docs/STRUCTURE.md).
 
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) **v24+** (see [`.nvmrc`](.nvmrc))
+- npm (included with Node)
+
 ## How to run
 
 ```bash
-npm install
+npm ci
 cp .env.example .env.local
 npm run dev
 ```

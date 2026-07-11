@@ -1,0 +1,59 @@
+name: Architecture discussion
+description: Propose or discuss structural changes to CleanStack
+title: "[Architecture]: "
+body:
+  - type: dropdown
+    id: architecture-area
+    attributes:
+      label: Architecture area
+      options:
+        - backend layers (Domain, Application, Infrastructure)
+        - CQRS / MediatR
+        - database and migrations
+        - external integrations
+        - Angular frontend
+        - React / Next.js frontend
+        - cross-cutting concerns
+        - deployment and infrastructure
+    validations:
+      required: true
+
+  - type: textarea
+    id: limitation
+    attributes:
+      label: Current limitation
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+    validations:
+      required: true
+
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Trade-offs
+
+  - type: textarea
+    id: migration-impact
+    attributes:
+      label: Migration impact
+      description: How would existing users or forks adapt?
+
+  - type: textarea
+    id: backend-impact
+    attributes:
+      label: Backend impact
+
+  - type: textarea
+    id: frontend-impact
+    attributes:
+      label: Frontend impact
+
+  - type: textarea
+    id: testing-impact
+    attributes:
+      label: Testing impact

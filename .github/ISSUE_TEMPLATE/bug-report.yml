@@ -1,0 +1,78 @@
+name: Bug report
+description: Report a reproducible defect in CleanStack
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: dropdown
+    id: affected-project
+    attributes:
+      label: Affected project
+      options:
+        - backend-dotnet
+        - frontend-angular
+        - frontend-react
+        - multiple projects
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: e.g. Windows 11, Ubuntu 24.04, macOS 15
+    validations:
+      required: true
+
+  - type: textarea
+    id: runtime-versions
+    attributes:
+      label: Runtime versions
+      description: Include relevant versions (.NET SDK, Node.js, npm, browser).
+      placeholder: |
+        .NET SDK: 10.0.301
+        Node.js: 24.x
+        npm: 11.x
+        Browser: Chrome 138
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Clone the repository
+        2. Run ...
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Do not include secrets, tokens, or connection strings.
+      render: shell
+
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Issue search
+      options:
+        - label: I searched existing issues and did not find a duplicate
+          required: true

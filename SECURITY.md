@@ -2,16 +2,16 @@
 
 ## Supported versions
 
-Security fixes are considered for the main branch (`main`) and the latest published version of this repository.
+Security fixes are considered for the **`main` branch** and the latest published state of this repository.
 
 | Component | Scope |
 |------------|--------|
 | `backend-dotnet/` | ASP.NET Core API, authentication, endpoints, HTTP integrations |
 | `frontend-angular/` | Angular SPA (client-side) |
 | `frontend-react/` | Next.js app (client + server routes) |
-| Dependencies | NuGet / npm — we prioritize updates via PR or advisory |
+| Dependencies | NuGet / npm — updates via PR or advisory |
 
-> This project is a **starter template**. Forks and production deployments are the responsibility of those who operate them (secrets, HTTPS, WAF, etc.).
+Older tags, forks, or deployments may not receive backported fixes. This project is a **starter template**; production deployments are the responsibility of those who operate them (secrets, HTTPS, WAF, etc.).
 
 ## Reporting a vulnerability
 
@@ -20,7 +20,7 @@ Security fixes are considered for the main branch (`main`) and the latest publis
 Use one of these options:
 
 1. **[GitHub Security Advisories](https://github.com/luismpenholato/clean-stack/security/advisories/new)** (recommended — private report)
-2. Direct contact with the maintainer via an agreed private channel (if applicable)
+2. Contact the maintainer through [their GitHub profile](https://github.com/luismpenholato) using a private channel
 
 ### What to include in the report
 
@@ -35,15 +35,9 @@ Use one of these options:
 - Real credentials, JWT tokens, connection strings, or database dumps
 - Third-party personal data
 
-## Response time (target)
+## Response
 
-| Stage | Target timeline |
-|-------|-------------------|
-| Receipt confirmation | 3 business days |
-| Initial triage | 7 business days |
-| Fix or plan | based on severity |
-
-There is no formal SLA; CleanStack is maintained as an open source project.
+Reports are reviewed as capacity allows. There is **no formal SLA** — CleanStack is maintained as an open source project alongside other work.
 
 ## Out of scope for this policy
 

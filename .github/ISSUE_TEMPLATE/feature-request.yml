@@ -1,0 +1,53 @@
+name: Feature request
+description: Suggest an improvement or new capability
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem being solved
+      description: What pain point or gap does this address?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-project
+    attributes:
+      label: Affected project
+      options:
+        - backend-dotnet
+        - frontend-angular
+        - frontend-react
+        - repository-wide
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: textarea
+    id: architecture-impact
+    attributes:
+      label: Architectural impact
+      description: Does this affect Clean Architecture boundaries, CQRS flows, or frontend independence?
+
+  - type: textarea
+    id: backwards-compatibility
+    attributes:
+      label: Backwards compatibility
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing considerations

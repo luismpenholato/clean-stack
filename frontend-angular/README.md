@@ -1,5 +1,7 @@
 # CleanStack Frontend (Angular)
 
+[Back to root documentation](../README.md)
+
 **Angular 21** SPA that consumes the REST API from the .NET backend.
 
 ## Version status
@@ -31,15 +33,13 @@ There is no `lint` script in `package.json`.
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) **v24+** (recommended)
+- [Node.js](https://nodejs.org/) **v24+** (see [`.nvmrc`](.nvmrc))
 - npm (included with Node)
-
-> **Pending:** add `.nvmrc` or `engines` in `package.json`.
 
 ## How to run
 
 ```bash
-npm install
+npm ci
 npm start
 ```
 

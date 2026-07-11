@@ -9,7 +9,7 @@ namespace CleanStack.CrossCutting.IOC.DependencyInjection;
 
 public static class ConfigureBindingsIntegration
 {
-    private static readonly TimeSpan DefaultHttpTimeout = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan _defaultHttpTimeout = TimeSpan.FromSeconds(30);
 
     public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
     {
@@ -19,7 +19,7 @@ public static class ConfigureBindingsIntegration
             .ConfigureHttpClient(c =>
             {
                 c.BaseAddress = new Uri(UrlHelper.NormalizeBaseAddress(baseUrl));
-                c.Timeout = DefaultHttpTimeout;
+                c.Timeout = _defaultHttpTimeout;
             })
             .AddStandardResilienceHandler();
     }

@@ -2,13 +2,12 @@ using CleanStack.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace CleanStack.CrossCutting.IOC.DependencyInjection;
 
 public static class ConfigureBindingsDatabaseContext
 {
-    public static void RegisterBindings(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+    public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
     {
         string? provider = configuration.GetValue<string>("Database:Provider")?.Trim();
         string? connectionString = configuration.GetConnectionString("Default");

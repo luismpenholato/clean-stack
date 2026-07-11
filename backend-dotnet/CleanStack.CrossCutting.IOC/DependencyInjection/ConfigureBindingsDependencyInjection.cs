@@ -1,19 +1,18 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace CleanStack.CrossCutting.IOC.DependencyInjection;
 
 public static class ConfigureBindingsDependencyInjection
 {
-    public static void RegisterBindings(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+    public static void RegisterBindings(IServiceCollection services, IConfiguration configuration)
     {
         #region Options
         ConfigureBindingsOptions.RegisterBindings(services, configuration);
         #endregion
 
         #region Database
-        ConfigureBindingsDatabaseContext.RegisterBindings(services, configuration, environment);
+        ConfigureBindingsDatabaseContext.RegisterBindings(services, configuration);
         #endregion
 
         #region MediatR

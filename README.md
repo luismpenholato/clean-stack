@@ -4,15 +4,14 @@ A production-ready full stack starter for building maintainable applications wit
 
 Use the .NET backend with either Angular or React/Next.js. The frontends are independent and should not be mixed within the same product.
 
-[![Backend CI](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml)
-[![Angular CI](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml/badge.svg)](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml)
-[![React CI](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml/badge.svg)](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml)
+[![Backend CI](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml/badge.svg?branch=main&event=push)](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml)
+[![Angular CI](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml/badge.svg?branch=main&event=push)](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml)
+[![React CI](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml/badge.svg?branch=main&event=push)](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml)
 ![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
 ![Angular 21](https://img.shields.io/badge/Angular-21-DD0031?logo=angular&logoColor=white)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
 ![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/luismpenholato?label=Sponsor&logo=githubsponsors&logoColor=white&color=ea4aaa)](https://github.com/sponsors/luismpenholato)
 
 ## Key features
 

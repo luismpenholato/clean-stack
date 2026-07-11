@@ -22,7 +22,7 @@ public partial class Program
                 .WriteTo.Console());
 
             _ = builder.Services.AddControllers();
-            ConfigureBindingsDependencyInjection.RegisterBindings(builder.Services, builder.Configuration, builder.Environment);
+            ConfigureBindingsDependencyInjection.RegisterBindings(builder.Services, builder.Configuration);
 
             builder.Services.AddSwagger();
 

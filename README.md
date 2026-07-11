@@ -1,12 +1,12 @@
 # CleanStack
 
-A production-ready full stack starter for building maintainable applications with .NET, Angular, React and Next.js.
+A production-ready foundation for building maintainable full stack applications with .NET, Angular, React and Next.js.
 
 Use the .NET backend with either Angular or React/Next.js. The frontends are independent and should not be mixed within the same product.
 
-[![Backend CI](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml/badge.svg?branch=main&event=push)](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml)
-[![Angular CI](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml/badge.svg?branch=main&event=push)](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml)
-[![React CI](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml/badge.svg?branch=main&event=push)](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml)
+[![Backend CI](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml/badge.svg?branch=main)](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml)
+[![Angular CI](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml/badge.svg?branch=main)](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml)
+[![React CI](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml/badge.svg?branch=main)](https://github.com/luismpenholato/clean-stack/actions/workflows/react-ci.yml)
 ![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
 ![Angular 21](https://img.shields.io/badge/Angular-21-DD0031?logo=angular&logoColor=white)
 ![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
@@ -72,17 +72,17 @@ Details: [`backend-dotnet/README.md`](backend-dotnet/README.md).
 
 ## Screenshots
 
-<!-- Add docs/images/angular-products.png -->
-<!-- Add docs/images/react-products.png -->
-<!-- Add docs/images/swagger.png -->
+### Angular
 
-Screenshots will be added under [`docs/images/`](docs/images/) as the repository matures. Expected captures:
+[![Angular products screen](docs/images/angular-products.webp)](docs/images/angular-products.webp)
 
-| File | Description |
-|---|---|
-| `docs/images/angular-products.png` | Angular products listing |
-| `docs/images/react-products.png` | React/Next.js products listing |
-| `docs/images/swagger.png` | Swagger UI for the API |
+### React / Next.js
+
+[![React products screen](docs/images/react-products.webp)](docs/images/react-products.webp)
+
+### Backend API
+
+[![Swagger API documentation](docs/images/swagger.webp)](docs/images/swagger.webp)
 
 ## Quick start
 
@@ -129,6 +129,17 @@ App: http://localhost:3000 — use another port if Angular is already running (`
 
 > Run the backend in parallel. Both frontends target `http://localhost:5000` for the API in development.
 
+## Use as a template
+
+CleanStack can be used as a GitHub repository template.
+
+1. Click **Use this template** on GitHub (enable **Template repository** under repository settings first).
+2. Create a new repository from the template.
+3. Choose either `frontend-angular` or `frontend-react` for your product.
+4. Remove the unused frontend if it will not be maintained.
+5. Update application names, environment variables and connection settings.
+6. Review the [roadmap](#roadmap) before using the foundation in production.
+
 ## Repository structure
 
 ```txt
@@ -136,7 +147,7 @@ clean-stack/
   backend-dotnet/     → .NET 10 API (Clean Architecture + CQRS)
   frontend-angular/   → Angular 21 SPA (ng-zorro)
   frontend-react/     → React 19 + Next.js 16 (Ant Design)
-  docs/images/        → screenshots (planned)
+  docs/images/        → screenshots
   .github/            → CI workflows, issue/PR templates
   README.md
   CONTRIBUTING.md
@@ -162,7 +173,6 @@ cd backend-dotnet
 dotnet restore backend-dotnet.sln
 dotnet build backend-dotnet.sln --configuration Release
 dotnet test backend-dotnet.sln --configuration Release
-dotnet format backend-dotnet.sln --verify-no-changes
 
 # Angular
 cd frontend-angular

@@ -34,8 +34,9 @@ cd backend-dotnet
 dotnet restore backend-dotnet.sln
 dotnet build backend-dotnet.sln --configuration Release
 dotnet test backend-dotnet.sln --configuration Release
-dotnet format backend-dotnet.sln --verify-no-changes
 ```
+
+> `dotnet format` is available locally for C# style checks. It is not enforced in CI because line-ending differences between Windows and Linux can cause false failures.
 
 ### Frontend Angular
 
@@ -75,7 +76,7 @@ npm run build
 
 | Area | Convention |
 |------|-----------|
-| Backend | Clean Architecture + CQRS; validators in the handler; `dotnet format` |
+| Backend | Clean Architecture + CQRS; validators in the handler; optional `dotnet format` locally |
 | Angular | Standalone, signals, OnPush; feature in `pages/`; see `docs/STRUCTURE.md` |
 | React | App Router; logic in `features/`; theme in `shared/theme/`; see `docs/STRUCTURE.md` |
 | UI URLs | English (`/products`, …) |

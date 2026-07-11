@@ -14,6 +14,10 @@ permissions:
 jobs:
   lint-test-build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:5000
+      NEXT_PUBLIC_APP_NAME: CleanStack
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
     defaults:
       run:
         working-directory: frontend-react

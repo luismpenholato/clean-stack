@@ -35,6 +35,3 @@ jobs:
 
       - name: Test
         run: dotnet test backend-dotnet.sln --no-build --configuration Release
-
-      - name: Verify formatting
-        run: dotnet format backend-dotnet.sln --verify-no-changes

@@ -6,16 +6,16 @@ React **19** frontend with **Next.js 16 App Router**, TypeScript, and **Ant Desi
 
 ## Stack
 
-| Technology | Version |
-|---|---|
-| React | 19.x |
-| Next.js | 16.2.x (App Router) |
-| TypeScript | 5.x |
-| Ant Design | 6.x + `@ant-design/nextjs-registry` |
-| TanStack Query | 5.x |
-| Axios | 1.x |
-| React Hook Form + Zod | 7.x / 4.x |
-| Vitest + Testing Library | 4.x |
+| Technology               | Version                             |
+| ------------------------ | ----------------------------------- |
+| React                    | 19.x                                |
+| Next.js                  | 16.2.x (App Router)                 |
+| TypeScript               | 5.x                                 |
+| Ant Design               | 6.x + `@ant-design/nextjs-registry` |
+| TanStack Query           | 5.x                                 |
+| Axios                    | 1.x                                 |
+| React Hook Form + Zod    | 7.x / 4.x                           |
+| Vitest + Testing Library | 4.x                                 |
 
 **No Tailwind** — Ant Design is the sole design system.
 
@@ -38,9 +38,10 @@ Summary: no business logic in `src/app`; domain in `src/features/`; reusable cod
 
 ## How to run
 
+Run the commands below from `frontend-react/`. First create `.env.local` with the values in [Environment variables](#environment-variables), preserving any existing settings.
+
 ```bash
 npm ci
-cp .env.example .env.local
 npm run dev
 ```
 
@@ -48,7 +49,7 @@ App: http://localhost:3000
 
 ## Environment variables
 
-Copy `.env.example` to `.env.local`:
+The repository does not currently include an `.env.example`. Create `.env.local` with these local values:
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
@@ -58,20 +59,22 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 > After changing `NEXT_PUBLIC_*` variables, **restart** `npm run dev`. In dev, if the variable is unset, the fallback is `http://localhost:5000`.
 
+These values are exposed to the client. Never place secrets in `NEXT_PUBLIC_*` variables. Production builds require the API base URL and must be rebuilt when the deployed client configuration changes.
+
 > **Dev vs production:** use `npm run dev` during development (hot reload). `npm run start` serves the build — run `npm run build` first.
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Development server |
-| `npm run build` | Production build |
-| `npm run start` | Production server |
-| `npm run lint` | ESLint |
-| `npm run test` | Vitest |
-| `npm run test:watch` | Vitest watch mode |
-| `npm run format` | Prettier write |
-| `npm run format:check` | Prettier check |
+| Command                | Description        |
+| ---------------------- | ------------------ |
+| `npm run dev`          | Development server |
+| `npm run build`        | Production build   |
+| `npm run start`        | Production server  |
+| `npm run lint`         | ESLint             |
+| `npm run test`         | Vitest             |
+| `npm run test:watch`   | Vitest watch mode  |
+| `npm run format`       | Prettier write     |
+| `npm run format:check` | Prettier check     |
 
 ## How to create a new feature
 
@@ -87,23 +90,23 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ## How to create a service
 
 ```ts
-import { apiClient } from '@/shared/lib/api/api-client';
+import { apiClient } from "@/shared/lib/api/api-client";
 
 export async function listItems(): Promise<Item[]> {
-  return apiClient.get<Item[]>('/api/items');
+  return apiClient.get<Item[]>("/api/items");
 }
 ```
 
 ## How to create a hook (TanStack Query)
 
 ```ts
-'use client';
+"use client";
 
-import { useQuery } from '@tanstack/react-query';
-import { listItems } from '../services/item.service';
+import { useQuery } from "@tanstack/react-query";
+import { listItems } from "../services/item.service";
 
 export function useItems() {
-  return useQuery({ queryKey: ['items'], queryFn: listItems });
+  return useQuery({ queryKey: ["items"], queryFn: listItems });
 }
 ```
 
@@ -111,7 +114,7 @@ export function useItems() {
 
 ```ts
 // schemas/item.schema.ts
-import { z } from 'zod';
+import { z } from "zod";
 export const itemSchema = z.object({ name: z.string().min(1) });
 export type ItemFormValues = z.infer<typeof itemSchema>;
 ```
@@ -131,11 +134,11 @@ Design system details: [`docs/STRUCTURE.md`](docs/STRUCTURE.md#design-system-src
 ## Docker
 
 ```bash
-docker build -t cleanstack-frontend-react:latest .
-docker run -p 3000:3000 -e NEXT_PUBLIC_API_BASE_URL=http://host.docker.internal:5000 cleanstack-frontend-react:latest
+docker build --build-arg NEXT_PUBLIC_API_BASE_URL=http://localhost:5000 -t cleanstack-frontend-react:latest .
+docker run --rm -p 3000:3000 cleanstack-frontend-react:latest
 ```
 
-Available build args: `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_APP_NAME`.
+Available build args: `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_APP_NAME`. Use an API URL reachable by the browser. Public Next.js variables are embedded during the build; setting them only on `docker run` does not reconfigure the already-built client bundle.
 
 ## Complementary skill
 
@@ -145,14 +148,14 @@ npx skills add luismpenholato/maurao-skills --skill react-nextjs-antd-clean-arch
 
 ## MVP routes
 
-| Route | Description |
-|---|---|
-| `/` | redirect → `/products` |
-| `/login` | Login (POST `/api/auth/login`) |
-| `/dashboard` | Mock dashboard (no menu item) |
-| `/products` | CRUD listing |
-| `/products/new` | Create product |
-| `/products/[id]/edit` | Edit product |
+| Route                 | Description                    |
+| --------------------- | ------------------------------ |
+| `/`                   | redirect → `/products`         |
+| `/login`              | Login (POST `/api/auth/login`) |
+| `/dashboard`          | Mock dashboard (no menu item)  |
+| `/products`           | CRUD listing                   |
+| `/products/new`       | Create product                 |
+| `/products/[id]/edit` | Edit product                   |
 
 API remains at `/api/products`.
 

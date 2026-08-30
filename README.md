@@ -1,6 +1,6 @@
 # CleanStack
 
-A production-ready foundation for building maintainable full stack applications with .NET, Angular, React and Next.js.
+A full stack starter for building maintainable applications with a .NET backend and an Angular or React/Next.js frontend.
 
 Use the .NET backend with either Angular or React/Next.js. The frontends are independent and should not be mixed within the same product.
 
@@ -13,6 +13,14 @@ Use the .NET backend with either Angular or React/Next.js. The frontends are ind
 ![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/luismpenholato?label=Sponsor&logo=githubsponsors&logoColor=white&color=ea4aaa)](https://github.com/sponsors/luismpenholato)
+
+[Quick start](#quick-start) · [Screenshots](#screenshots) · [Architecture](#architecture) · [Validation](#validation-commands) · [Roadmap](#roadmap)
+
+## Project scope
+
+CleanStack provides product management examples, layered backend code, independent frontends and CI workflows. It is a starting point to adapt, not a finished SaaS product.
+
+**Before deploying:** real backend authentication and React route protection are still on the [roadmap](#roadmap). Development uses an in-memory database, which does not retain data across restarts. Review authorization, persistence and deployment settings for your own product.
 
 ## Key features
 
@@ -30,11 +38,11 @@ Use the .NET backend with either Angular or React/Next.js. The frontends are ind
 
 ## Choosing a frontend
 
-| Scenario | Recommendation |
-|---|---|
-| Enterprise admin, traditional SPA, Angular team | [`frontend-angular/`](frontend-angular/) — Angular 21 + ng-zorro |
-| New SaaS, SSR, SEO, App Router, React ecosystem | [`frontend-react/`](frontend-react/) — React 19 + Next.js 16 + Ant Design |
-| Same backend, different products | Use **one frontend per product** — do not mix Angular and React patterns in the same app |
+| Scenario                                        | Recommendation                                                                           |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Enterprise admin, traditional SPA, Angular team | [`frontend-angular/`](frontend-angular/) — Angular 21 + ng-zorro                         |
+| New SaaS, SSR, SEO, App Router, React ecosystem | [`frontend-react/`](frontend-react/) — React 19 + Next.js 16 + Ant Design                |
+| Same backend, different products                | Use **one frontend per product** — do not mix Angular and React patterns in the same app |
 
 Both frontends consume the same REST API and share UI route conventions (`/products`, `/products/new`, `/products/:id/edit`), but they are separate codebases. Pick the stack that fits your team and product; you normally choose **one** frontend when starting a new product.
 
@@ -59,15 +67,15 @@ In development, the API can use an **InMemory** database instead of SQL Server (
 Controller → MediatR → Handler → Repository/Service → Database or external API
 ```
 
-| Layer | Responsibility |
-|---|---|
-| **Domain** | Entities, repository and service interfaces |
-| **Application** | Commands/Queries, handlers, validators (`Features/`) |
-| **Infrastructure** | EF Core, repositories, HTTP integrations |
-| **Interface** | Controllers, `Program`, middlewares, Swagger |
-| **CrossCutting** | DTOs, options, helpers |
-| **Migration** | FluentMigrator (SQL schema) |
-| **Tests** | Mirror `Application/Features/` |
+| Layer              | Responsibility                                       |
+| ------------------ | ---------------------------------------------------- |
+| **Domain**         | Entities, repository and service interfaces          |
+| **Application**    | Commands/Queries, handlers, validators (`Features/`) |
+| **Infrastructure** | EF Core, repositories, HTTP integrations             |
+| **Interface**      | Controllers, `Program`, middlewares, Swagger         |
+| **CrossCutting**   | DTOs, options, helpers                               |
+| **Migration**      | FluentMigrator (SQL schema)                          |
+| **Tests**          | Mirror `Application/Features/`                       |
 
 Details: [`backend-dotnet/README.md`](backend-dotnet/README.md).
 
@@ -89,12 +97,21 @@ Details: [`backend-dotnet/README.md`](backend-dotnet/README.md).
 
 ### Prerequisites
 
-| Tool | Minimum version | Notes |
-|---|---|---|
-| [.NET SDK](https://dotnet.microsoft.com/download/dotnet/10.0) | **10.0.301+** | Pinned in [`backend-dotnet/global.json`](backend-dotnet/global.json) |
-| [Node.js](https://nodejs.org/) | **24+** | See `.nvmrc` in each frontend folder |
-| npm | **8+** (included with Node) | Use `npm ci` when `package-lock.json` is present |
-| Docker | optional | Per-application Dockerfiles |
+| Tool                                                          | Minimum version          | Notes                                                                |
+| ------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------- |
+| [.NET SDK](https://dotnet.microsoft.com/download/dotnet/10.0) | **10.0.301+**            | Pinned in [`backend-dotnet/global.json`](backend-dotnet/global.json) |
+| [Node.js](https://nodejs.org/)                                | **24+**                  | See `.nvmrc` in each frontend folder                                 |
+| npm                                                           | Included with Node.js 24 | Use `npm ci` with the committed lockfiles                            |
+| Docker                                                        | optional                 | Per-application Dockerfiles                                          |
+
+Clone the repository first:
+
+```bash
+git clone https://github.com/luismpenholato/clean-stack.git
+cd clean-stack
+```
+
+Run each application below in a **separate terminal, starting at the repository root**.
 
 ### Backend
 
@@ -119,10 +136,11 @@ App: http://localhost:3000
 
 ### Frontend React (Next.js)
 
+Create `frontend-react/.env.local` using the values in [Frontend React configuration](#frontend-react) before starting or building the app. Preserve any settings already present in that file.
+
 ```bash
 cd frontend-react
 npm ci
-cp .env.example .env.local
 npm run dev
 ```
 
@@ -134,7 +152,7 @@ App: http://localhost:3000 — use another port if Angular is already running (`
 
 CleanStack can be used as a GitHub repository template.
 
-1. Click **Use this template** on GitHub (enable **Template repository** under repository settings first).
+1. Click **Use this template** on GitHub.
 2. Create a new repository from the template.
 3. Choose either `frontend-angular` or `frontend-react` for your product.
 4. Remove the unused frontend if it will not be maintained.
@@ -158,75 +176,80 @@ clean-stack/
   LICENSE
 ```
 
-| Project | Stack highlights |
-|---|---|
-| [`backend-dotnet/`](backend-dotnet/) | ASP.NET Core, EF Core, MediatR, FluentValidation, FluentMigrator, Refit, Serilog |
-| [`frontend-angular/`](frontend-angular/) | ng-zorro-antd, RxJS, Vitest |
-| [`frontend-react/`](frontend-react/) | Ant Design, TanStack Query, Axios, React Hook Form, Zod, Vitest |
+| Project                                  | Stack highlights                                                                 |
+| ---------------------------------------- | -------------------------------------------------------------------------------- |
+| [`backend-dotnet/`](backend-dotnet/)     | ASP.NET Core, EF Core, MediatR, FluentValidation, FluentMigrator, Refit, Serilog |
+| [`frontend-angular/`](frontend-angular/) | ng-zorro-antd, RxJS, Vitest                                                      |
+| [`frontend-react/`](frontend-react/)     | Ant Design, TanStack Query, Axios, React Hook Form, Zod, Vitest                  |
 
 ## Validation commands
 
-Run these before opening a pull request for the affected area:
+Run these from the **repository root** before opening a pull request for the affected area. The commands use explicit paths so they can be run in sequence without changing directories.
 
 ```bash
 # Backend
-cd backend-dotnet
-dotnet restore backend-dotnet.sln
-dotnet build backend-dotnet.sln --configuration Release
-dotnet test backend-dotnet.sln --configuration Release
+dotnet restore backend-dotnet/backend-dotnet.sln
+dotnet build backend-dotnet/backend-dotnet.sln --configuration Release
+dotnet test backend-dotnet/backend-dotnet.sln --configuration Release
 
 # Angular
-cd frontend-angular
-npm ci
-npm run build
-npm test
+npm ci --prefix frontend-angular
+npm run build --prefix frontend-angular
+npm test --prefix frontend-angular -- --watch=false
 
 # React
-cd frontend-react
-npm ci
-npm run lint
-npm run test
-npm run build
+npm ci --prefix frontend-react
+npm run lint --prefix frontend-react
+npm run test --prefix frontend-react
+npm run build --prefix frontend-react
 ```
 
 ## Configuration
 
 ### Backend
 
-| Variable / key | Description |
-|---|---|
-| `ConnectionStrings__Default` | SQL Server connection string |
-| `Database:Provider` | `InMemory` (dev default) or `SqlServer` |
-| `ExternalProductApi__BaseUrl` | External API URL (e.g. FakeStore) |
+| Variable / key                | Description                             |
+| ----------------------------- | --------------------------------------- |
+| `ConnectionStrings__Default`  | SQL Server connection string            |
+| `Database:Provider`           | `InMemory` (dev default) or `SqlServer` |
+| `ExternalProductApi__BaseUrl` | External API URL (e.g. FakeStore)       |
 
 See [`backend-dotnet/README.md`](backend-dotnet/README.md).
 
 ### Frontend Angular
 
-| File | Key |
-|---|---|
+| File                                          | Key                                    |
+| --------------------------------------------- | -------------------------------------- |
 | `src/environments/environment.development.ts` | `apiBaseUrl` (`http://localhost:5000`) |
 
 ### Frontend React
 
-Copy [`.env.example`](frontend-react/.env.example) to `.env.local`:
+The current checkout does not include a `frontend-react/.env.example`. Create `frontend-react/.env.local` with these local values:
 
-| Variable | Description |
-|---|---|
-| `NEXT_PUBLIC_API_BASE_URL` | API base URL (e.g. `http://localhost:5000`) |
-| `NEXT_PUBLIC_APP_NAME` | App display name and SEO tags |
-| `NEXT_PUBLIC_SITE_URL` | Public site URL (metadata, sitemap, Open Graph) |
+```dotenv
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
+NEXT_PUBLIC_APP_NAME=CleanStack
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+These `NEXT_PUBLIC_*` values are public client configuration, not a place for secrets. Set them before building and rebuild when changing the deployed API URL.
+
+| Variable                   | Description                                     |
+| -------------------------- | ----------------------------------------------- |
+| `NEXT_PUBLIC_API_BASE_URL` | API base URL (e.g. `http://localhost:5000`)     |
+| `NEXT_PUBLIC_APP_NAME`     | App display name and SEO tags                   |
+| `NEXT_PUBLIC_SITE_URL`     | Public site URL (metadata, sitemap, Open Graph) |
 
 ## Docker
 
 Build images from each project directory:
 
-| Service | Dockerfile |
-|---|---|
-| API | [`backend-dotnet/CleanStack.Interface/Dockerfile`](backend-dotnet/CleanStack.Interface/Dockerfile) |
+| Service   | Dockerfile                                                                                         |
+| --------- | -------------------------------------------------------------------------------------------------- |
+| API       | [`backend-dotnet/CleanStack.Interface/Dockerfile`](backend-dotnet/CleanStack.Interface/Dockerfile) |
 | Migration | [`backend-dotnet/CleanStack.Migration/Dockerfile`](backend-dotnet/CleanStack.Migration/Dockerfile) |
-| Angular | [`frontend-angular/Dockerfile`](frontend-angular/Dockerfile) |
-| React | [`frontend-react/Dockerfile`](frontend-react/Dockerfile) |
+| Angular   | [`frontend-angular/Dockerfile`](frontend-angular/Dockerfile)                                       |
+| React     | [`frontend-react/Dockerfile`](frontend-react/Dockerfile)                                           |
 
 ```bash
 # API (from backend-dotnet/)
@@ -297,10 +320,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Community
 
-| Document | Description |
-|---|---|
-| [Contributing](CONTRIBUTING.md) | How to contribute, standards, and PR workflow |
-| [Security](SECURITY.md) | Responsible vulnerability reporting |
-| [Code of Conduct](CODE_OF_CONDUCT.md) | Community standards |
-| [Changelog](CHANGELOG.md) | Notable changes |
-| [License](LICENSE) | MIT License |
+See the [Code of Conduct](CODE_OF_CONDUCT.md) for community standards and the [Changelog](CHANGELOG.md) for notable changes.

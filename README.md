@@ -16,11 +16,21 @@ Use one frontend per product — the frontends are independent and should not be
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/luismpenholato?label=Sponsor&logo=githubsponsors&logoColor=white&color=ea4aaa)](https://github.com/sponsors/luismpenholato)
 
-[Quick start](#quick-start) · [Screenshots](#screenshots) · [Architecture](#architecture) · [Validation](#validation-commands) · [Security](docs/security-checklist.md) · [Roadmap](#roadmap)
+[Quick start](#quick-start) · [Screenshots](#screenshots) · [Architecture](#architecture) · [Portfolio series](#portfolio-series) · [Validation](#validation-commands) · [Security](docs/security-checklist.md) · [Roadmap](#roadmap)
 
 ## Project scope
 
 CleanStack provides product management examples, layered backend code, independent frontends and CI workflows. It is a starting point to adapt, not a finished SaaS product.
+
+## Portfolio series
+
+| Repository | Focus |
+| ---------- | ----- |
+| **This repo** | Full-stack starter (.NET 10 + Angular / React) |
+| [Microservices.Ecommerce](https://github.com/luismpenholato/Microservices.Ecommerce) | .NET microservices e-commerce + observability |
+| [EventDriven.OrderProcessing.RabbitMQ](https://github.com/luismpenholato/EventDriven.OrderProcessing.RabbitMQ) | .NET event-driven order workers (RabbitMQ) |
+| [EventStreaming.Analytics.Kafka](https://github.com/luismpenholato/EventStreaming.Analytics.Kafka) | .NET Kafka analytics + CQRS read models |
+| [orderflow-operations](https://github.com/luismpenholato/orderflow-operations) | Node/React modular monolith (inventory + ERP outbox) |
 
 **Before deploying:** real backend authentication and React route protection are still on the [roadmap](#roadmap). Development uses an in-memory database, which does not retain data across restarts. Review authorization, persistence and deployment settings for your own product.
 

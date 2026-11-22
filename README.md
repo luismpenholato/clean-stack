@@ -1,8 +1,10 @@
 # CleanStack
 
-A full stack starter for building maintainable applications with a .NET backend and an Angular or React/Next.js frontend.
+A **full-stack starter / reference** for maintainable apps: .NET 10 backend + choose **Angular 21** or **React 19 / Next.js 16**.
 
-Use the .NET backend with either Angular or React/Next.js. The frontends are independent and should not be mixed within the same product.
+Use one frontend per product — the frontends are independent and should not be mixed in the same app.
+
+> Not a finished SaaS. Auth, route protection and production persistence are still on the [roadmap](#roadmap). Prefer this as a learning foundation or bootstrap, not a drop-in commercial product.
 
 [![Backend CI](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml/badge.svg?branch=main)](https://github.com/luismpenholato/clean-stack/actions/workflows/backend-ci.yml)
 [![Angular CI](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml/badge.svg?branch=main)](https://github.com/luismpenholato/clean-stack/actions/workflows/angular-ci.yml)
@@ -312,7 +314,7 @@ Report vulnerabilities privately — **do not** open public issues. See [SECURIT
 ## Support
 
 - [Issues](https://github.com/luismpenholato/clean-stack/issues) for bugs and feature requests
-- [GitHub Sponsors](https://github.com/sponsors/luismpenholato) to support ongoing maintenance
+- Sponsors fund [Verdicspec](https://github.com/luismpenholato/verdicspec) and [Nebula Aura](https://github.com/luismpenholato/nebula-aura-theme); optional support via [GitHub Sponsors](https://github.com/sponsors/luismpenholato)
 
 ## License
 

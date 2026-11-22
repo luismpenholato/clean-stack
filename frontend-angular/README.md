@@ -1,4 +1,4 @@
-# CleanStack Frontend (Angular)
+﻿# CleanStack Frontend (Angular)
 
 [Back to root documentation](../README.md)
 
@@ -130,7 +130,7 @@ Multi-stage: Node build + nginx (`Dockerfile` at project root).
 ## Complementary skill
 
 ```bash
-npx skills add luismpenholato/maurao-skills --skill angular-frontend-clean-architecture
+npx skills add luismpenholato/verdic-skills --skill angular-frontend-clean-architecture
 ```
 
 ## Notes

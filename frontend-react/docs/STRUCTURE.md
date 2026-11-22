@@ -1,4 +1,4 @@
-# React 19 + Next.js 16 project structure
+﻿# React 19 + Next.js 16 project structure
 
 **Feature-based (vertical slice) + shared** organization, aligned with Next.js 16 App Router, Ant Design, and TanStack Query.
 
@@ -282,4 +282,4 @@ Set `NEXT_PUBLIC_SITE_URL` for production. Admin app uses `noindex` until public
 
 ## Complementary skill
 
-For AI agents and detailed code patterns, use the `react-nextjs-antd-clean-architecture` skill from the `maurao-skills` repository.
+For AI agents and detailed code patterns, use the `react-nextjs-antd-clean-architecture` skill from the `verdic-skills` repository.

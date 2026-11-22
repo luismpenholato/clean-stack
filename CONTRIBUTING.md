@@ -1,4 +1,4 @@
-# Contributing
+﻿# Contributing
 
 Thank you for considering a contribution to **CleanStack**. This document describes the expected workflow for issues, branches, and pull requests.
 
@@ -105,7 +105,7 @@ docs(react): update MVP routes to /products
 - Ensure relevant builds and tests pass (see [validation commands](README.md#validation-commands)).
 - Add **screenshots** for visual or UI changes.
 - Update [CHANGELOG.md](CHANGELOG.md) when the change is user-facing or notable.
-- Update README / `STRUCTURE.md` / skills in [maurao-skills](https://github.com/luismpenholato/maurao-skills) if project conventions change.
+- Update README / `STRUCTURE.md` / skills in [verdic-skills](https://github.com/luismpenholato/verdic-skills) if project conventions change.
 - For architectural changes, describe impact on layers, CQRS flows, and frontend independence.
 
 ## Reporting bugs

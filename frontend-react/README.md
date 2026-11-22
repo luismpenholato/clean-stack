@@ -1,4 +1,4 @@
-# CleanStack React 19 + Next.js 16
+﻿# CleanStack React 19 + Next.js 16
 
 [Back to root documentation](../README.md)
 
@@ -143,7 +143,7 @@ Available build args: `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_APP_NAME`. Use an
 ## Complementary skill
 
 ```bash
-npx skills add luismpenholato/maurao-skills --skill react-nextjs-antd-clean-architecture
+npx skills add luismpenholato/verdic-skills --skill react-nextjs-antd-clean-architecture
 ```
 
 ## MVP routes

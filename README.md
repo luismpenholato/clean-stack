@@ -1,4 +1,4 @@
-# CleanStack
+﻿# CleanStack
 
 A **full-stack starter / reference** for maintainable apps: .NET 10 backend + choose **Angular 21** or **React 19 / Next.js 16**.
 
@@ -293,12 +293,12 @@ A root `docker-compose.yml` is planned once SQL Server, migrations and services 
 
 ## Skills for AI agents
 
-Complementary skills in [`maurao-skills`](https://github.com/luismpenholato/maurao-skills):
+CleanStack can use skills from [`verdic-skills`](https://github.com/luismpenholato/verdic-skills) (same author; optional):
 
 ```bash
-npx skills add luismpenholato/maurao-skills --skill dotnet-backend-clean-architecture
-npx skills add luismpenholato/maurao-skills --skill angular-frontend-clean-architecture
-npx skills add luismpenholato/maurao-skills --skill react-nextjs-antd-clean-architecture
+npx skills add luismpenholato/verdic-skills --skill dotnet-backend-clean-architecture
+npx skills add luismpenholato/verdic-skills --skill angular-frontend-clean-architecture
+npx skills add luismpenholato/verdic-skills --skill react-nextjs-antd-clean-architecture
 ```
 
 ## Contributing

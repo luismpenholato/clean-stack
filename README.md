@@ -303,18 +303,18 @@ A root `docker-compose.yml` is planned once SQL Server, migrations and services 
 
 ## Skills for AI agents
 
-CleanStack can use skills from [`verdic-skills`](https://github.com/luismpenholato/verdic-skills) (optional):
+CleanStack can use skills from [`verdicspec-skills`](https://github.com/luismpenholato/verdicspec-skills) (optional):
 
 ```bash
 # Stack patterns
-npx skills add luismpenholato/verdic-skills --skill dotnet-backend-clean-architecture
-npx skills add luismpenholato/verdic-skills --skill angular-frontend-clean-architecture
-npx skills add luismpenholato/verdic-skills --skill react-nextjs-antd-clean-architecture
+npx skills add luismpenholato/verdicspec-skills --skill dotnet-backend-clean-architecture
+npx skills add luismpenholato/verdicspec-skills --skill angular-frontend-clean-architecture
+npx skills add luismpenholato/verdicspec-skills --skill react-nextjs-antd-clean-architecture
 
 # Cross-cutting
-npx skills add luismpenholato/verdic-skills --skill application-security-review
-npx skills add luismpenholato/verdic-skills --skill api-http-testing
-npx skills add luismpenholato/verdic-skills --skill observability-logging
+npx skills add luismpenholato/verdicspec-skills --skill application-security-review
+npx skills add luismpenholato/verdicspec-skills --skill api-http-testing
+npx skills add luismpenholato/verdicspec-skills --skill observability-logging
 ```
 
 Before sharing a deployment, read [docs/security-checklist.md](docs/security-checklist.md).

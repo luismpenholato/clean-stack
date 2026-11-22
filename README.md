@@ -16,7 +16,7 @@ Use one frontend per product — the frontends are independent and should not be
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/luismpenholato?label=Sponsor&logo=githubsponsors&logoColor=white&color=ea4aaa)](https://github.com/sponsors/luismpenholato)
 
-[Quick start](#quick-start) · [Screenshots](#screenshots) · [Architecture](#architecture) · [Validation](#validation-commands) · [Roadmap](#roadmap)
+[Quick start](#quick-start) · [Screenshots](#screenshots) · [Architecture](#architecture) · [Validation](#validation-commands) · [Security](docs/security-checklist.md) · [Roadmap](#roadmap)
 
 ## Project scope
 
@@ -293,13 +293,21 @@ A root `docker-compose.yml` is planned once SQL Server, migrations and services 
 
 ## Skills for AI agents
 
-CleanStack can use skills from [`verdic-skills`](https://github.com/luismpenholato/verdic-skills) (same author; optional):
+CleanStack can use skills from [`verdic-skills`](https://github.com/luismpenholato/verdic-skills) (optional):
 
 ```bash
+# Stack patterns
 npx skills add luismpenholato/verdic-skills --skill dotnet-backend-clean-architecture
 npx skills add luismpenholato/verdic-skills --skill angular-frontend-clean-architecture
 npx skills add luismpenholato/verdic-skills --skill react-nextjs-antd-clean-architecture
+
+# Cross-cutting
+npx skills add luismpenholato/verdic-skills --skill application-security-review
+npx skills add luismpenholato/verdic-skills --skill api-http-testing
+npx skills add luismpenholato/verdic-skills --skill observability-logging
 ```
+
+Before sharing a deployment, read [docs/security-checklist.md](docs/security-checklist.md).
 
 ## Contributing
 

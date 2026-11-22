@@ -11,7 +11,17 @@ Security fixes are considered for the **`main` branch** and the latest published
 | `frontend-react/` | Next.js app (client + server routes) |
 | Dependencies | NuGet / npm — updates via PR or advisory |
 
-Older tags, forks, or deployments may not receive backported fixes. This project is a **starter template**; production deployments are the responsibility of those who operate them (secrets, HTTPS, WAF, etc.).
+Older tags, forks, or deployments may not receive backported fixes. This project is a **starter / reference**; production deployments are the responsibility of those who operate them (secrets, HTTPS, WAF, auth, etc.).
+
+## Known starter limitations
+
+CleanStack intentionally ships incomplete production security controls while the [roadmap](README.md#roadmap) catches up:
+
+- Real JWT authentication and React route protection are still planned
+- Development often uses an in-memory database
+- Some frontend guards are stubs — **do not** expose sensitive APIs publicly until auth is real
+
+See [docs/security-checklist.md](docs/security-checklist.md) before any shared deployment.
 
 ## Reporting a vulnerability
 
@@ -50,6 +60,7 @@ Reports are reviewed as capacity allows. There is **no formal SLA** — CleanSta
 - Never commit secrets; use environment variables and secret managers
 - Enable HTTPS in production
 - Keep dependencies up to date (`dotnet list package --outdated`, `npm audit`)
-- Implement real authentication/authorization before exposing sensitive data (current MVP uses stubs in parts of the frontend)
+- Implement real authentication/authorization before exposing sensitive data
+- Use [`verdic-skills` `application-security-review`](https://github.com/luismpenholato/verdic-skills/tree/main/skills/application-security-review) for structured reviews
 
 We appreciate responsible reports that help keep the foundation safer for everyone.

@@ -1,4 +1,5 @@
 using System.Net;
+using CleanStack.Application.Common.Exceptions;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,11 @@ public sealed class GlobalExceptionMiddleware
         {
             _logger.LogWarning(ex, "Validation failed");
             await WriteProblemDetailsAsync(context, HttpStatusCode.BadRequest, "Erro de validação", FormatValidationErrors(ex));
+        }
+        catch (NotFoundException ex)
+        {
+            _logger.LogWarning(ex, "Resource not found");
+            await WriteProblemDetailsAsync(context, HttpStatusCode.NotFound, "Recurso não encontrado", ex.Message);
         }
         catch (InvalidOperationException ex)
         {

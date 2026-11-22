@@ -1,3 +1,4 @@
+using CleanStack.Application.Common.Exceptions;
 using CleanStack.CrossCutting.Dto.Products;
 using CleanStack.Domain.Entities;
 using CleanStack.Domain.Interfaces.Services;
@@ -33,7 +34,8 @@ public sealed class CreateProductHandler : IRequestHandler<CreateProductCommand,
 
         if (request.ImportFromExternalId.HasValue)
         {
-            ExternalProductDto? external = await _externalProductService.GetProductByIdAsync(request.ImportFromExternalId.Value, cancellationToken) ?? throw new InvalidOperationException($"Produto externo com id {request.ImportFromExternalId} não encontrado.");
+            ExternalProductDto? external = await _externalProductService.GetProductByIdAsync(request.ImportFromExternalId.Value, cancellationToken)
+                ?? throw new NotFoundException($"Produto externo com id {request.ImportFromExternalId} não encontrado.");
             name = external.Title ?? "Sem título";
             description = external.Description;
             price = external.Price;

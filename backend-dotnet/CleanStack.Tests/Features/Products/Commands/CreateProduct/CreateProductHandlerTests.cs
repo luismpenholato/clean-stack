@@ -1,3 +1,4 @@
+using CleanStack.Application.Common.Exceptions;
 using CleanStack.Application.Features.Products.Commands.CreateProduct;
 using CleanStack.CrossCutting.Dto.Products;
 using CleanStack.Domain.Entities;
@@ -72,5 +73,30 @@ public class CreateProductHandlerTests
         _ = result.Price.Should().Be(99.90m);
         _ = await externalProductService.Received(1).GetProductByIdAsync(5, Arg.Any<CancellationToken>());
         await repo.Received(1).AddAsync(Arg.Is<Product>(p => p.Name == "Produto Externo"), Arg.Any<CancellationToken>());
+    }
+
+    [Fact]
+    public async Task Handle_ImportFromExternalIdInexistente_LancaNotFoundException()
+    {
+        IProductUnitOfWork uow = Substitute.For<IProductUnitOfWork>();
+        IProductRepository repo = Substitute.For<IProductRepository>();
+        _ = uow.ProductRepository.Returns(repo);
+
+        IValidator<CreateProductCommand> validator = Substitute.For<IValidator<CreateProductCommand>>();
+        _ = validator.ValidateAsync(Arg.Any<CreateProductCommand>(), Arg.Any<CancellationToken>())
+            .Returns(new ValidationResult());
+
+        IExternalProductService externalProductService = Substitute.For<IExternalProductService>();
+        _ = externalProductService.GetProductByIdAsync(999, Arg.Any<CancellationToken>())
+            .Returns((ExternalProductDto?)null);
+
+        var handler = new CreateProductHandler(uow, validator, externalProductService);
+        var command = new CreateProductCommand(null, null, null, true, 999);
+
+        Func<Task> act = () => handler.Handle(command, CancellationToken.None);
+
+        _ = await act.Should().ThrowAsync<NotFoundException>()
+            .WithMessage("*999*");
+        await repo.DidNotReceive().AddAsync(Arg.Any<Product>(), Arg.Any<CancellationToken>());
     }
 }
